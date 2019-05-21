@@ -1,0 +1,29 @@
+rpminspect-data-fedora
+======================
+
+This package provides data files used by the rpminspect program on Fedora
+Linux.  Defaults are provided by the software, but the idea is that you will
+customize these files based on the products you are making.  This package
+overrides the template package (rpminspect-data-generic) provided by the
+rpminspect package.
+
+
+PACKAGING
+---------
+
+The rpminspect package builds the software and a data package called
+rpminspect-data-generic.  This is a template package and is there so that
+the output of the rpminspect.spec file is complete.  The generic package
+does not contain anything useful.  The intent is for the vendor to create
+their own data package to use in place of the generic package.
+
+The preferred way to do that is to create an rpminspect-data-VENDOR package
+and set two things in the spec file:
+
+    Provides: rpminspect-data
+    Obsoletes: rpminspect-data-generic
+
+rpminspect in turn Requires 'rpminspect-data'.  The generic package provides
+this virtual dependency as well.  The vendor package should obsolete the
+generic package so we don't end up with both on the system.  But having any
+single one on the system would meet the requirement of 'rpminspect-data'.

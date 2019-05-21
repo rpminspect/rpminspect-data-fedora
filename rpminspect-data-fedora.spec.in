@@ -1,0 +1,41 @@
+%define debug_package %{nil}
+
+Name:           rpminspect-data-fedora
+Version:        %%VERSION%%
+Release:        1%{?dist}
+Summary:        Build deviation compliance tool data files
+Group:          Development/Tools
+License:        GPLv3+
+URL:            https://github.com/dcantrell/rpminspect-data-fedora
+Source0:        %{name}-%{version}.tar.xz
+
+Provides:       rpminspect-data
+Obsoletes:      rpminspect-data-generic
+
+%description
+Vendor specific configuration file for rpminspect and data files used by
+the inspections provided by librpminspect.
+
+
+%prep
+%setup -q
+
+
+%build
+make clean
+
+
+%install
+rm -rf %{buildroot}
+make install DESTDIR=%{buildroot}
+
+
+%files
+%defattr(-,root,root)
+%{_datadir}/rpminspect
+%config(noreplace) %{_sysconfdir}/rpminspect/rpminspect.conf
+
+
+%changelog
+* %%RPMDATE%% David Cantrell <dcantrell@redhat.com> - %%VERSION%%-1
+- See commit log at https://github.com/dcantrell/rpminspect-data-fedora

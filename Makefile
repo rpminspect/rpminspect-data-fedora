@@ -4,7 +4,7 @@
 #
 
 PKG  = rpminspect-data-fedora
-VER := $(shell date +%Y%m%d%H%M)
+VER := 0.1
 
 SUBDIRS = abi-checking-whitelist capabilities licenses \
           political-whitelist setuid version-whitelist

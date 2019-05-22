@@ -17,10 +17,16 @@ SYSCONFDIR ?= /etc/rpminspect
 
 RPMBUILD_DIR ?= $(shell pwd)
 
+# Values for use in automated builds and releases
+RPMDATE = $(shell date +'%a %b %d %Y')
+GITDATE = $(shell date +'%Y%m%d%H%M')
+GITHASH = $(shell git rev-parse --short HEAD)
+
 all: spec
 
 spec:
 	sed -e 's|%%VERSION%%|$(VER)|g' < $(PKG).spec.in > $(PKG).spec
+	sed -i -e 's|%%RPMDATE%%|$(RPMDATE)|g' $(PKG).spec
 
 install: $(SUBDIRS)
 	for d in $(SUBDIRS) ; do \

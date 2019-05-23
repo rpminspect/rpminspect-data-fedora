@@ -12,6 +12,8 @@ Source0:        %{name}-%{version}.tar.xz
 Provides:       rpminspect-data
 Obsoletes:      rpminspect-data-generic
 
+BuildArch:      noarch
+
 %description
 Vendor specific configuration file for rpminspect and data files used by
 the inspections provided by librpminspect.
@@ -26,13 +28,14 @@ make clean
 
 
 %install
-rm -rf %{buildroot}
-make install DESTDIR=%{buildroot}
+%make_build install DESTDIR=%{buildroot}
 
 
 %files
-%defattr(-,root,root)
+%license COPYING
+%doc AUTHORS README
 %{_datadir}/rpminspect
+%dir %{_sysconfdir}/rpminspect
 %config(noreplace) %{_sysconfdir}/rpminspect/rpminspect.conf
 
 

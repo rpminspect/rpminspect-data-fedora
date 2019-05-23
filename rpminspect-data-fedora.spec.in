@@ -3,6 +3,7 @@
 Name:           rpminspect-data-fedora
 Version:        %%VERSION%%
 Release:        1%{?dist}
+Epoch:          1
 Summary:        Build deviation compliance tool data files
 Group:          Development/Tools
 License:        GPLv3+

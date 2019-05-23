@@ -9,7 +9,7 @@ VER := 0.1
 SUBDIRS = abi-checking-whitelist capabilities licenses \
           political-whitelist setuid version-whitelist
 
-DIST_EXTRA = AUTHORS README Makefile rpminspect.conf $(PKG).spec.in
+DIST_EXTRA = AUTHORS COPYING README Makefile rpminspect.conf $(PKG).spec.in
 
 DESTDIR    ?=
 DATADIR    ?= /usr/share/rpminspect

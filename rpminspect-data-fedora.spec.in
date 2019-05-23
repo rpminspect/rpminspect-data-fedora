@@ -1,5 +1,3 @@
-%define debug_package %{nil}
-
 Name:           rpminspect-data-fedora
 Version:        %%VERSION%%
 Release:        1%{?dist}
@@ -25,7 +23,7 @@ the inspections provided by librpminspect.
 
 
 %build
-make clean
+# Nothing to build
 
 
 %install

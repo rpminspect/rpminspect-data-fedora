@@ -46,6 +46,10 @@ dist: all
 srpm: dist
 	rpmbuild -bs --nodeps --define "_sourcedir $(RPMBUILD_DIR)" --define "_srcrpmdir $(RPMBUILD_DIR)" --define "_rpmdir $(RPMBUILD_DIR)" $(PKG).spec
 
+release: dist
+	git tag -s -a -m "Tag release v$(VER)" v$(VER)
+	gpg --detach-sign --armor $(PKG)-$(VER).tar.xz
+
 clean:
 	-rm -rf $(PKG)-$(VER)
 	-rm -f $(PKG).spec

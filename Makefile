@@ -19,8 +19,6 @@ RPMBUILD_DIR ?= $(shell pwd)
 
 # Values for use in automated builds and releases
 RPMDATE = $(shell date +'%a %b %d %Y')
-GITDATE = $(shell date +'%Y%m%d%H%M')
-GITHASH = $(shell git rev-parse --short HEAD)
 
 all: spec
 

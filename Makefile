@@ -25,6 +25,7 @@ all: spec
 spec:
 	sed -e 's|%%VERSION%%|$(VER)|g' < $(PKG).spec.in > $(PKG).spec
 	sed -i -e 's|%%RPMDATE%%|$(RPMDATE)|g' $(PKG).spec
+	sed -i -e 's|%%TARBALL%%|$(PKG)-$(VER).tar.xz|g' $(PKG).spec
 
 install: $(SUBDIRS)
 	for d in $(SUBDIRS) ; do \

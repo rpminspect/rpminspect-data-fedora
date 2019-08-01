@@ -4,7 +4,7 @@
 #
 
 PKG  = rpminspect-data-fedora
-VER := 0.1
+VER := 0.2
 
 SUBDIRS = abi-checking-whitelist capabilities licenses \
           political-whitelist setuid version-whitelist

@@ -7,7 +7,7 @@ PKG  = rpminspect-data-fedora
 VER := 0.2
 
 SUBDIRS = abi-checking-whitelist capabilities licenses \
-          political-whitelist setuid version-whitelist
+          political-whitelist st_mode version-whitelist
 
 DIST_EXTRA = AUTHORS COPYING README Makefile rpminspect.conf $(PKG).spec.in
 

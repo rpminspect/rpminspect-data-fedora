@@ -5,8 +5,8 @@ Epoch:          1
 Summary:        Build deviation compliance tool data files
 Group:          Development/Tools
 License:        GPLv3+
-URL:            https://github.com/dcantrell/rpminspect-data-fedora
-Source0:        https://github.com/dcantrell/rpminspect-data-fedora/releases/download/v%%VERSION%%/%%TARBALL%%
+URL:            https://github.com/rpminspect/rpminspect-data-fedora
+Source0:        https://github.com/rpminspect/rpminspect-data-fedora/releases/download/v%%VERSION%%/%%TARBALL%%
 
 Provides:       rpminspect-data
 Obsoletes:      rpminspect-data-generic
@@ -40,4 +40,4 @@ the inspections provided by librpminspect.
 
 %changelog
 * %%RPMDATE%% David Cantrell <dcantrell@redhat.com> - %%VERSION%%-1
-- See commit log at https://github.com/dcantrell/rpminspect-data-fedora
+- See commit log at https://github.com/rpminspect/rpminspect-data-fedora

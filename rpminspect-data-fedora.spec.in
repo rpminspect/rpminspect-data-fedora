@@ -13,6 +13,8 @@ Obsoletes:      rpminspect-data-generic
 
 BuildArch:      noarch
 
+BuildRequires:  meson
+
 %description
 Vendor specific configuration file for rpminspect and data files used by
 the inspections provided by librpminspect.
@@ -23,11 +25,12 @@ the inspections provided by librpminspect.
 
 
 %build
-# Nothing to build
+%meson
+%meson_build
 
 
 %install
-%make_build install DESTDIR=%{buildroot}
+%meson_install
 
 
 %files

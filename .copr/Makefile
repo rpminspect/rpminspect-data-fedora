@@ -19,13 +19,14 @@ srpm:
 	sed -i -e 's|%%RPMDATE%%|$(RPMDATE)|g' "$(SPEC)"
 	sed -i -e 's|%%GITDATE%%|$(GITDATE)|g' "$(SPEC)"
 	sed -i -e 's|%%GITHASH%%|$(GITHASH)|g' "$(SPEC)"
-	sed -i -e 's|%%TARBALL%%|$(PKG)-$(VER)-$(GITDATE)git$(GITHASH).tar.gz|g' "$(SPEC)"
+	sed -i -e 's|%%TARBALL%%|$(PKG)-$(VER)-$(GITDATE)git$(GITHASH).tar.xz|g' "$(SPEC)"
 	sed -i -e 's|^%setup.*$$|%setup -q -n $(PKG)-$(VER)-$(GITDATE)git$(GITHASH)|g' "$(SPEC)"
 	sed -i -e '/^Release:/ s/1[^%]*/0.1.$(GITDATE)git$(GITHASH)/' "$(SPEC)"
 	git archive \
-		--format=tar.gz \
-		--output='$(topdir)/$(PKG)-$(VER)-$(GITDATE)git$(GITHASH).tar.gz' \
+		--format=tar \
+		--output='$(topdir)/$(PKG)-$(VER)-$(GITDATE)git$(GITHASH).tar' \
 		--prefix='$(PKG)-$(VER)-$(GITDATE)git$(GITHASH)/' HEAD $(topdir)
+	xz -9 $(topdir)/$(PKG)-$(VER)-$(GITDATE)git$(GITHASH).tar
 	rpmbuild \
 		-bs --nodeps \
 		--define "_sourcedir $(topdir)" \

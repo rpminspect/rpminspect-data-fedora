@@ -11,7 +11,7 @@ GITHASH = $(shell git rev-parse --short HEAD)
 
 # Various things we need to generate a tarball
 PKG := $(shell grep ^Name: "$(SPEC_TEMPLATE)" | awk '{ print $$2; }')
-VER := $(shell grep ^VER "$(topdir)/Makefile" | cut -d ' ' -f 3)
+VER := $(shell grep 'version :' $(topdir)/meson.build | grep -E "'[0-9]+\.[0-9]+'" | cut -d "'" -f 2)
 
 srpm:
 	$(topdir)/.copr/installate-package.sh

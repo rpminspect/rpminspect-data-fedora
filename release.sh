@@ -1,9 +1,23 @@
-#!/bin/sh -x
+#!/bin/sh
 #
-# Automate making a new release of rpminspect projects
-# This script will increment the version minor number and continue
-# through with tagging the repo and make the archive and spec file.
-# by: David Cantrell <dcantrell@redhat.com>
+# Automate making a new release of meson-built projects that also
+# use Copr for automated builds and that carry template RPM spec
+# files.  See README for more information.
+#
+# Copyright (C) 2019 David Cantrell <david.l.cantrell@gmail.com>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
 PATH=/usr/bin
@@ -12,7 +26,7 @@ CURL="curl -L -O --progress-bar"
 PROG="$(basename $0)"
 
 # Github settings
-PROJECT=rpminspect-data-fedora
+PROJECT="$(basename $(dirname $(realpath $0)))"
 GH_API="https://api.github.com"
 GH_REPO="${GH_API}/repos/${PROJECT}/${PROJECT}"
 

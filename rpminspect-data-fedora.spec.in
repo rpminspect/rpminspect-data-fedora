@@ -14,6 +14,9 @@ Obsoletes:      rpminspect-data-generic
 BuildArch:      noarch
 
 BuildRequires:  meson
+# this is required because we have to use a language in project()
+# in the meson.build file and that requires a compiler present
+BuildRequires:  gcc
 
 %description
 Vendor specific configuration file for rpminspect and data files used by

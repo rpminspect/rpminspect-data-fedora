@@ -1,3 +1,5 @@
+# NOTE: this isn't actually a C project, but we need to specify
+# a language here for meson
 project('rpminspect-data-fedora',
         'c',
         version : '0.4',

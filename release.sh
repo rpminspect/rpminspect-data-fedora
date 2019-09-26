@@ -22,11 +22,11 @@
 
 PATH=/usr/bin
 CWD="$(pwd)"
-CURL="curl -L -O --progress-bar"
+CURL="curl -L --progress-bar"
 PROG="$(basename $0)"
 
 # Github settings
-PROJECT="$(basename $(dirname $(realpath $0)))"
+PROJECT="$(basename $(realpath ${CWD}))"
 GH_API="https://api.github.com"
 GH_REPO="${GH_API}/repos/${PROJECT}/${PROJECT}"
 
@@ -115,6 +115,12 @@ while true ; do
     esac
 done
 
+# This must be a git project
+if [ ! -d ${CWD}/.git ] && [ ! -f ${CWD}/.git/config ]; then
+    echo "*** Missing .git subdirectory." >&2
+    exit 1
+fi
+
 # Make sure we are in the right place
 if [ ! -f "${CWD}/meson.build" ] && [ ! -f "${CWD}/${PROJECT}.spec.in" ]; then
     echo "*** You must run this script from the top level ${PROJECT} directory" >&2
@@ -125,6 +131,13 @@ fi
 if [ ! -z "$(git status --porcelain)" ]; then
     echo "*** git index is not clean:" >&2
     git status --porcelain | sed -e 's|^|*** |g' >&2
+    exit 1
+fi
+
+# Collect the Github project owner (not necessarily the same as project name)
+OWNER="$(grep "git@github.com" .git/config | cut -d ':' -f 2 | cut -d '/' -f 1)"
+if [ -z "${OWNER}" ]; then
+    echo "*** Unable to determine Github project owner." >&2
     exit 1
 fi
 
@@ -143,6 +156,8 @@ if [ "${OPT_BUMPVER}" = "y" ]; then
 else
     OLDVERSION="${VERSION}"
 fi
+
+
 
 # Now tag the release
 if [ "${OPT_TAG}" = "y" ]; then
@@ -182,6 +197,7 @@ fi
 # Create a github release entry
 if [ "${OPT_GITHUB}" = "y" ]; then
     TAG="$(git tag -l | tail -n 1)"
+    OLDTAG="$(git tag -l | tail -n 2 | head -n 1)"
 
     # Get github access token
     TOKEN="$(cat ${HOME}/.githubtoken 2>/dev/null)"
@@ -202,12 +218,13 @@ if [ "${OPT_GITHUB}" = "y" ]; then
     fi
 
     # Create new release on github
-    API_JSON=$(printf '{"tag_name": "%s", "target_commitish": "master", "name": "%s-%s", "body": "%s-%s", "draft": false, "prerelease": false}' ${TAG} ${PROJECT} ${VERSION} ${PROJECT} ${VERSION})
+    BODY="$(git log --format="%s" ${OLDTAG}.. | sed -e 's|^|* |g')"
+    API_JSON="{\"tag_name\": \"${TAG}\", \"target_commitish\": \"master\", \"name\": \"${PROJECT}-${VERSION}\", \"body\": \"${PROJECT}-${VERSION}\", \"draft\": false, \"prerelease\": false}"
     RELEASE_INFO="$(mktemp)"
-    ${CURL} -o "${RELEASE_INFO}" --data "${API_JSON}" https://api.github.com/repos/${PROJECT}/${PROJECT}/releases?access_token=${TOKEN}
+    ${CURL} -o "${RELEASE_INFO}" --data "${API_JSON}" https://api.github.com/repos/${OWNER}/${PROJECT}/releases?access_token=${TOKEN}
 
     # Get the ID of the asset
-    ASSET_ID="$(grep -m 1 "id.:" ${RELEASE_INFO} | grep -w id | tr : = | tr -cd '[[:alnum:]]=')"
+    ASSET_ID="$(grep -m 1 "id.:" ${RELEASE_INFO} | grep -w id | tr : = | tr -cd '[[:alnum:]]=' | cut -d '=' -f 2)"
     rm -f ${RELEASE_INFO}
     if [ -z "${ASSET_ID}" ]; then
         echo "*** Unable to get the asset ID" >&2
@@ -215,9 +232,9 @@ if [ "${OPT_GITHUB}" = "y" ]; then
     fi
 
     # Upload the assets
-    cd build/meson-build
+    cd build/meson-dist
     for asset in ${PROJECT}-${VERSION}.tar.xz ${PROJECT}-${VERSION}.tar.xz.asc ; do
-        GH_ASSET="https://uploads.github.com/repos/${PROJECT}/${PROJECT}/releases/${ASSET_ID}/assets?name=${asset}"
+        GH_ASSET="https://uploads.github.com/repos/${OWNER}/${PROJECT}/releases/${ASSET_ID}/assets?name=${asset}"
         ${CURL} -H "${GH_AUTH}" --data-binary @"${asset}" -H "Content-Type: application/octet-stream" ${GH_ASSET}
     done
     cd ${CWD}

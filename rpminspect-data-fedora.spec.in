@@ -43,4 +43,4 @@ the inspections provided by librpminspect.
 
 %changelog
 * %%RPMDATE%% David Cantrell <dcantrell@redhat.com> - %%VERSION%%-1
-- See commit log at https://github.com/rpminspect/rpminspect-data-fedora
+- https://github.com/rpminspect/rpminspect-data-fedora/commits/v%%VERSION%%

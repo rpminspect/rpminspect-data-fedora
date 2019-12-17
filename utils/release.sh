@@ -157,8 +157,6 @@ else
     OLDVERSION="${VERSION}"
 fi
 
-
-
 # Now tag the release
 if [ "${OPT_TAG}" = "y" ]; then
     git tag -s -a -m "Tag release v${VERSION}" v${VERSION}
@@ -170,23 +168,6 @@ ninja -v -C build dist
 cd build/meson-dist
 gpg --detach-sign --armor ${PROJECT}-${VERSION}.tar.xz
 cd ${CWD}
-
-# Create a spec file
-RPMDATE="$(date +'%a %b %d %Y')"
-GITDATE="$(date +'%Y%m%d%H%M')"
-GITHASH="$(git rev-parse --short HEAD))"
-sed -e "s|%%VERSION%%|${VERSION}|g" < ${PROJECT}.spec.in > build/meson-dist/${PROJECT}.spec
-sed -i -e "s|%%RPMDATE%%|${RPMDATE}|g" build/meson-dist/${PROJECT}.spec
-sed -i -e "s|%%GITDATE%%|${GITDATE}|g" build/meson-dist/${PROJECT}.spec
-sed -i -e "s|%%GITHASH%%|${GITHASH}|g" build/meson-dist/${PROJECT}.spec
-sed -i -e "s|%%TARBALL%%|${PROJECT}-${VERSION}.tar.xz|g" build/meson-dist/${PROJECT}.spec
-
-# Generate SRPM
-( cd build/meson-dist
-  rpmbuild -bs --nodeps \
-           --define "_sourcedir ." \
-           --define "_srcrpmdir ." \
-           --define "_rpmdir ." ${PROJECT}.spec )
 
 # Push the changes
 if [ "${OPT_PUSH}" = "y" ]; then
@@ -218,18 +199,19 @@ if [ "${OPT_GITHUB}" = "y" ]; then
     fi
 
     # Create new release on github
-    BODY="$(git log --format="%s" ${OLDTAG}.. | sed -e 's|^|* |g')"
-    API_JSON="{\"tag_name\": \"${TAG}\", \"target_commitish\": \"master\", \"name\": \"${PROJECT}-${VERSION}\", \"body\": \"${PROJECT}-${VERSION}\", \"draft\": false, \"prerelease\": false}"
+    API_JSON=$(jq -ns --arg tag_name "${TAG}" --arg target_commitish "${TAG}" --arg name "${PROJECT}-${VERSION}" --arg body "$(git log --format="%s" ${OLDTAG}.. | sed -e 's|^|* |g')" '{ tag_name: $tag_name, target_commitish: $target_commitish, name: $name, body: $body, draft: false, prerelease: false }')
     RELEASE_INFO="$(mktemp)"
     ${CURL} -o "${RELEASE_INFO}" --data "${API_JSON}" https://api.github.com/repos/${OWNER}/${PROJECT}/releases?access_token=${TOKEN}
 
     # Get the ID of the asset
     ASSET_ID="$(grep -m 1 "id.:" ${RELEASE_INFO} | grep -w id | tr : = | tr -cd '[[:alnum:]]=' | cut -d '=' -f 2)"
-    rm -f ${RELEASE_INFO}
     if [ -z "${ASSET_ID}" ]; then
         echo "*** Unable to get the asset ID" >&2
+        cat ${RELEASE_INFO}
+        rm -f ${RELEASE_INFO}
         exit 1
     fi
+    rm -f ${RELEASE_INFO}
 
     # Upload the assets
     cd build/meson-dist

@@ -39,6 +39,8 @@ the inspections provided by librpminspect.
 %doc AUTHORS README
 %{_datadir}/rpminspect
 %dir %{_sysconfdir}/rpminspect
+%dir %{_sysconfdir}/rpminspect/profiles
+%config(noreplace) %{_sysconfdir}/rpminspect/profiles/scl.conf
 %config(noreplace) %{_sysconfdir}/rpminspect/rpminspect.conf
 
 

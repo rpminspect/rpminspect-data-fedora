@@ -5220,8 +5220,8 @@
     "url": "http://www.unicode.org/copyright.html"
   },
   "Universal Permissive License v1.0": {
-    "approved": "unknown",
-    "fedora_abbrev": "",
+    "approved": "yes",
+    "fedora_abbrev": "UPL",
     "fedora_name": "",
     "id": "523",
     "license_text": "",

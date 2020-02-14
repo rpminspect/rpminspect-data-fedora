@@ -1,5 +1,5 @@
 project('rpminspect-data-fedora',
-        version : '0.7',
+        version : '0.8',
         license : 'GPLv3+')
 
 # Install data files

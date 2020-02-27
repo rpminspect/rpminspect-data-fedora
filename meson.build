@@ -36,5 +36,5 @@ install_data(
 
 install_subdir(
     'profiles',
-    install_dir : get_option('sysconfdir') + '/' + 'rpminspect'
+    install_dir : get_option('sysconfdir') / 'rpminspect'
 )

@@ -730,14 +730,14 @@
     "url": "https://github.com/robbiehanson/CocoaHTTPServer/blob/master/LICENSE.txt"
   },
   "BSD Zero Clause License": {
-    "approved": "unknown",
-    "fedora_abbrev": "",
-    "fedora_name": "",
+    "approved": "yes",
+    "fedora_abbrev": "0BSD",
+    "fedora_name": "Zero-Clause BSD",
     "id": "84",
     "license_text": "",
     "spdx_abbrev": "0BSD",
     "spdx_name": "BSD Zero Clause License",
-    "url": "http://landley.net/toybox/license.html"
+    "url": "https://fedoraproject.org/wiki/Licensing/ZeroClauseBSD"
   },
   "BSD with attribution": {
     "approved": "yes",
@@ -6548,5 +6548,155 @@
     "spdx_abbrev": "",
     "spdx_name": "",
     "url": "https://fedoraproject.org/wiki/Licensing/LiteratFontLicense"
+  },
+  "Array Input Method Public License": {
+    "approved": "yes",
+    "fedora_abbrev": "Array",
+    "fedora_name": "Array Input Method Public License",
+    "id": "652",
+    "license_text": "",
+    "spdx_abbrev": "#No official SPDX support as of 2020-04-21",
+    "spdx_name": "#No official SPDX support as of 20202-04-21",
+    "url": "https://fedoraproject.org/wiki/Licensing/Array"
+  },
+  "BSD + Patent License": {
+    "approved": "yes",
+    "fedora_abbrev": "BSD-2-Clause-Patent",
+    "fedora_name": "",
+    "id": "653",
+    "license_text": "",
+    "spdx_abbrev": "BSD-2-Clause-Patent",
+    "spdx_name": "BSD-2-Clause Plus Patent License",
+    "url": "https://fedoraproject.org/wiki/Licensing/BSD-2-Clause-Patent"
+  },
+  "Inner Net License": {
+    "approved": "yes",
+    "fedora_abbrev": "Inner-Net",
+    "fedora_name": "Inner Net License",
+    "id": "654",
+    "license_text": "",
+    "spdx_abbrev": "#No official SPDX support as of 2020-04-21",
+    "spdx_name": "#No official SPDX support as of 20202-04-21",
+    "url": "https://fedoraproject.org/wiki/Licensing/Inner_Net_License"
+  },
+  "NIST Software License": {
+    "approved": "yes",
+    "fedora_abbrev": "NISTSL",
+    "fedora_name": "NIST Software License",
+    "id": "655",
+    "license_text": "",
+    "spdx_abbrev": "#No official SPDX support as of 2020-04-21",
+    "spdx_name": "#No official SPDX support as of 20202-04-21",
+    "url": "https://fedoraproject.org/wiki/Licensing/NISTSL"
+  },
+  "Perl License (variant)": {
+    "approved": "yes",
+    "fedora_abbrev": "GPLv2+ or Artistic",
+    "fedora_name": "Perl License (variant)",
+    "id": "656",
+    "license_text": "",
+    "spdx_abbrev": "#No official SPDX support as of 2020-04-21",
+    "spdx_name": "#No official SPDX support as of 20202-04-21",
+    "url": ""
+  },
+  "Perl License (variant)": {
+    "approved": "yes",
+    "fedora_abbrev": "LGPLv2+ or Artistic",
+    "fedora_name": "Perl License (variant)",
+    "id": "657",
+    "license_text": "",
+    "spdx_abbrev": "#No official SPDX support as of 2020-04-21",
+    "spdx_name": "#No official SPDX support as of 20202-04-21",
+    "url": ""
+  },
+  "radvd License": {
+    "approved": "yes",
+    "fedora_abbrev": "radvd",
+    "fedora_name": "radvd License",
+    "id": "658",
+    "license_text": "",
+    "spdx_abbrev": "#No official SPDX support as of 2020-04-21",
+    "spdx_name": "#No official SPDX support as of 20202-04-21",
+    "url": "https://fedoraproject.org/wiki/Licensing/radvd_License"
+  },
+  "Tumbolia Public License": {
+    "approved": "yes",
+    "fedora_abbrev": "Tumbolia",
+    "fedora_name": "Tumbolia Public License",
+    "id": "659",
+    "license_text": "",
+    "spdx_abbrev": "#No official SPDX support as of 2020-04-21",
+    "spdx_name": "#No official SPDX support as of 20202-04-21",
+    "url": "https://fedoraproject.org/wiki/Licensing/Tumbolia"
+  },
+  "wxWindows Library License v 3.1": {
+    "approved": "yes",
+    "fedora_abbrev": "wxWindows",
+    "fedora_name": "wxWindows Library License v 3.1",
+    "id": "660",
+    "license_text": "",
+    "spdx_abbrev": "WXwindows",
+    "spdx_name": "wxWindows Library License",
+    "url": "https://opensource.org/licenses/WXwindows"
+  },
+  "Commons Clause": {
+    "approved": "no",
+    "fedora_abbrev": "",
+    "fedora_name": "",
+    "id": "661",
+    "license_text": "",
+    "spdx_abbrev": "#No official SPDX support as of 2020-04-21",
+    "spdx_name": "#No official SPDX support as of 20202-04-21",
+    "url": "https://fedoraproject.org/wiki/Licensing/CommonsClause"
+  },
+  "lha license": {
+    "approved": "no",
+    "fedora_abbrev": "",
+    "fedora_name": "",
+    "id": "662",
+    "license_text": "",
+    "spdx_abbrev": "#No official SPDX support as of 2020-04-21",
+    "spdx_name": "#No official SPDX support as of 20202-04-21",
+    "url": "http://packages.debian.org/changelogs/pool/non-free/l/lha/current/copyright"
+  },
+  "Server Side Public License v1 (SSPL)": {
+    "approved": "no",
+    "fedora_abbrev": "",
+    "fedora_name": "",
+    "id": "663",
+    "license_text": "",
+    "spdx_abbrev": "SSPL-1.0",
+    "spdx_name": "Server Side Public License, v 1",
+    "url": "https://fedoraproject.org/wiki/Licensing/SSPL"
+  },
+  "Data license Germany - attribution 2.0": {
+    "approved": "yes",
+    "fedora_abbrev": "DL-DE-BY",
+    "fedora_name": "Data license Germany - attribution 2.0",
+    "id": "664",
+    "license_text": "",
+    "spdx_abbrev": "#No official SPDX support as of 2020-04-21",
+    "spdx_name": "#No official SPDX support as of 20202-04-21",
+    "url": "https://www.govdata.de/dl-de/by-2-0"
+  },
+  "License Ouverte": {
+    "approved": "yes",
+    "fedora_abbrev": "Ouverte",
+    "fedora_name": "License Ouverte",
+    "id": "665",
+    "license_text": "",
+    "spdx_abbrev": "#No official SPDX support as of 2020-04-21",
+    "spdx_name": "#No official SPDX support as of 20202-04-21",
+    "url": "https://www.etalab.gouv.fr/licence-ouverte-open-licence"
+  },
+  "Ubuntu Font License": {
+    "approved": "no",
+    "fedora_abbrev": "",
+    "fedora_name": "",
+    "id": "666",
+    "license_text": "",
+    "spdx_abbrev": "#No official SPDX support as of 2020-04-21",
+    "spdx_name": "#No official SPDX support as of 20202-04-21",
+    "url": "https://fedoraproject.org/wiki/Licensing/UbuntuFontLicense"
   }
 }

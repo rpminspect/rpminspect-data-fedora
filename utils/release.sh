@@ -4,7 +4,7 @@
 # use Copr for automated builds and that carry template RPM spec
 # files.  See README for more information.
 #
-# Copyright (C) 2019 David Cantrell <david.l.cantrell@gmail.com>
+# Copyright (C) 2019-2020 David Cantrell <david.l.cantrell@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,17 +24,12 @@ PATH=/usr/bin
 CWD="$(pwd)"
 CURL="curl -L --progress-bar"
 PROG="$(basename $0)"
-
-# Github settings
 PROJECT="$(basename $(realpath ${CWD}))"
-GH_API="https://api.github.com"
-GH_REPO="${GH_API}/repos/${PROJECT}/${PROJECT}"
 
 # Command line options
 OPT_BUMPVER=
 OPT_TAG=
 OPT_PUSH=
-OPT_GITHUB=
 
 usage() {
     echo "Create a release for ${PROJECT}"
@@ -43,9 +38,7 @@ usage() {
     echo "    -b, --bumpver      Increment the minor version number"
     echo "    -t, --tag          Tag the release in git"
     echo "    -p, --push         Push the release and release tag"
-    echo "    -g, --github       Create github release entry and upload"
-    echo "                       artifacts"
-    echo "    -A, --all          Same as '-b -t -p -g'"
+    echo "    -A, --all          Same as '-b -t -p'"
     echo "    -h, --help         Display usage"
     echo "The options control behavior on the repo and upstream."
     echo
@@ -65,7 +58,7 @@ usage() {
 }
 
 # Handle command line options
-OPTS=$(getopt -o 'btpgAh' --long 'bumpver,tag,push,github,all,help' -n "${PROG}" -- "$@")
+OPTS=$(getopt -o 'btpAh' --long 'bumpver,tag,push,all,help' -n "${PROG}" -- "$@")
 
 if [ $? -ne 0 ]; then
     echo "Terminating..." >&2
@@ -89,15 +82,10 @@ while true ; do
             OPT_PUSH=y
             shift
             ;;
-        '-g'|'--github')
-            OPT_GITHUB=y
-            shift
-            ;;
         '-A'|'--all')
             OPT_BUMPVER=y
             OPT_TAG=y
             OPT_PUSH=y
-            OPT_GITHUB=y
             shift
             ;;
         '-h'|'--help')
@@ -134,13 +122,6 @@ if [ ! -z "$(git status --porcelain)" ]; then
     exit 1
 fi
 
-# Collect the Github project owner (not necessarily the same as project name)
-OWNER="$(grep "git@github.com" .git/config | cut -d ':' -f 2 | cut -d '/' -f 1)"
-if [ -z "${OWNER}" ]; then
-    echo "*** Unable to determine Github project owner." >&2
-    exit 1
-fi
-
 # Increment the version number and commit that change
 VERSION="$(grep 'version :' meson.build | grep -E "'[0-9]+\.[0-9]+'" | cut -d "'" -f 2)"
 CURMAJ="$(echo ${VERSION} | cut -d '.' -f 1)"
@@ -173,53 +154,6 @@ cd ${CWD}
 if [ "${OPT_PUSH}" = "y" ]; then
     git push
     git push --tags
-fi
-
-# Create a github release entry
-if [ "${OPT_GITHUB}" = "y" ]; then
-    TAG="$(git tag -l | tail -n 1)"
-    OLDTAG="$(git tag -l | tail -n 2 | head -n 1)"
-
-    # Get github access token
-    TOKEN="$(cat ${HOME}/.githubtoken 2>/dev/null)"
-    if [ -z "${TOKEN}" ]; then
-        echo "*** Missing github access token from ${HOME}/.githubtoken" >&2
-        exit 1
-    fi
-
-    # More Github settings
-    GH_TAGS="${GH_REPO}/releases/tags/${TAG}"
-    GH_AUTH="Authorization: token ${TOKEN}"
-
-    # Validate Github token
-    ${CURL} -o /dev/null -sH "${GH_AUTH}" "${GH_REPO}"
-    if [ $? -ne 0 ]; then
-        echo "*** Invalid Github token, repo, or a network issue" >&2
-        exit 1
-    fi
-
-    # Create new release on github
-    API_JSON=$(jq -ns --arg tag_name "${TAG}" --arg target_commitish "${TAG}" --arg name "${PROJECT}-${VERSION}" --arg body "$(git log --format="%s" ${OLDTAG}.. | sed -e 's|^|* |g')" '{ tag_name: $tag_name, target_commitish: $target_commitish, name: $name, body: $body, draft: false, prerelease: false }')
-    RELEASE_INFO="$(mktemp)"
-    ${CURL} -o "${RELEASE_INFO}" --data "${API_JSON}" https://api.github.com/repos/${OWNER}/${PROJECT}/releases?access_token=${TOKEN}
-
-    # Get the ID of the asset
-    ASSET_ID="$(grep -m 1 "id.:" ${RELEASE_INFO} | grep -w id | tr : = | tr -cd '[[:alnum:]]=' | cut -d '=' -f 2)"
-    if [ -z "${ASSET_ID}" ]; then
-        echo "*** Unable to get the asset ID" >&2
-        cat ${RELEASE_INFO}
-        rm -f ${RELEASE_INFO}
-        exit 1
-    fi
-    rm -f ${RELEASE_INFO}
-
-    # Upload the assets
-    cd build/meson-dist
-    for asset in ${PROJECT}-${VERSION}.tar.xz ${PROJECT}-${VERSION}.tar.xz.asc ; do
-        GH_ASSET="https://uploads.github.com/repos/${OWNER}/${PROJECT}/releases/${ASSET_ID}/assets?name=${asset}"
-        ${CURL} -H "${GH_AUTH}" --data-binary @"${asset}" -H "Content-Type: application/octet-stream" ${GH_ASSET}
-    done
-    cd ${CWD}
 fi
 
 echo

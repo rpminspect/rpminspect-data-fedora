@@ -1,4 +1,4 @@
-# Fedora 31 setuid whitelist
+# Fedora 32 setuid whitelist
 
 #
 # setuid verification list.  All files installed with setuid or setgid permissions must be listed here with the expected permissions (st_mode), expected owner, and expected group.  Blank lines and lines beginning with '#' are ignored.

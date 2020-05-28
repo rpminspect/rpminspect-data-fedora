@@ -40,8 +40,8 @@ the inspections provided by librpminspect.
 %{_datadir}/rpminspect
 %dir %{_sysconfdir}/rpminspect
 %dir %{_sysconfdir}/rpminspect/profiles
-%config(noreplace) %{_sysconfdir}/rpminspect/profiles/scl.conf
-%config(noreplace) %{_sysconfdir}/rpminspect/rpminspect.conf
+%config(noreplace) %{_sysconfdir}/rpminspect/profiles/scl.yaml
+%config(noreplace) %{_sysconfdir}/rpminspect/rpminspect.yaml
 
 
 %changelog

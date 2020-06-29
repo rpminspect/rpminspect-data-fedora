@@ -1,5 +1,5 @@
 project('rpminspect-data-fedora',
-        version : '1.0',
+        version : '1.1',
         license : 'GPLv3+',
         meson_version : '>=0.47.0')
 
@@ -31,11 +31,18 @@ install_subdir(
 
 # Install the configuration file
 install_data(
-    sources : 'rpminspect.yaml',
-    install_dir : get_option('sysconfdir') + '/rpminspect'
+    sources : 'fedora.yaml',
+    install_dir : get_option('datadir') + '/rpminspect'
 )
 
 install_subdir(
     'profiles',
-    install_dir : get_option('sysconfdir') + '/rpminspect'
+    install_dir : get_option('datadir') + '/rpminspect'
+)
+
+# Install scripts
+install_data(
+    sources : 'rpminspect-fedora',
+    install_dir : get_option('bindir'),
+    install_mode : 'rwxrwxrwx'
 )

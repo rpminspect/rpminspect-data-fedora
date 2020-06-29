@@ -15,7 +15,7 @@ common:
     # for the [common] section).  Profiles are referred to by NAME and
     # the file would be NAME.yaml.  Any profile used at runtime must
     # exist in the profile directory.
-    profiledir: /etc/rpminspect/profiles
+    profiledir: /usr/share/rpminspect/profiles/fedora
 
 koji:
     # The root URL of the XMLRPC API provided by the Koji hub

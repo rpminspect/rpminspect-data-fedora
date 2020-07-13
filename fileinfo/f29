@@ -1,7 +1,9 @@
-# Fedora 31 setuid whitelist
-
+# Fedora 29 stat(2) exceptions
 #
-# setuid verification list.  All files installed with setuid or setgid permissions must be listed here with the expected permissions (st_mode), expected owner, and expected group.  Blank lines and lines beginning with '#' are ignored.
+# All files installed with setuid or setgid permissions must be listed
+# here with the expected permissions (st_mode), expected owner, and
+# expected group.  Blank lines and lines beginning with '#' are
+# ignored.
 #
 # Example (commented out):
 #-rwsr-xr-x    root    root     /usr/bin/mount
@@ -88,4 +90,3 @@ drwxrwsr-x          uuidd      uuidd      /var/lib/libuuid
 -rwsr-x---          root       sssd       /usr/libexec/sssd/krb5_child
 -rwsr-x---          root       sssd       /usr/libexec/sssd/ldap_child
 -rwsr-x---          root       sssd       /usr/libexec/sssd/proxy_child
--rwsr-xr-x          root       root       /usr/bin/vmware-user-suid-wrapper

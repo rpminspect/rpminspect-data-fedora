@@ -1,10 +1,9 @@
 #
-# Fedora rawhide Capabilities whitelist
+# Fedora rawhide capabilities(7) list
 #
 
 #
-# This is the capabilities whitelist file.  Lines beginning with '#' and
-# blank lines are ignored.
+# Lines beginning with '#' and blank lines are ignored.
 #
 # The format of this file is:
 # <package name>    <file path>          <capabilities>

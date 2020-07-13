@@ -21,7 +21,7 @@ install_subdir(
     install_dir : get_option('datadir') + '/rpminspect'
 )
 install_subdir(
-    'stat-whitelist',
+    'fileinfo',
     install_dir : get_option('datadir') + '/rpminspect'
 )
 install_subdir(

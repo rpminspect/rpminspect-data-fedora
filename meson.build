@@ -17,7 +17,7 @@ install_subdir(
     install_dir : get_option('datadir') + '/rpminspect'
 )
 install_subdir(
-    'political-whitelist',
+    'politics',
     install_dir : get_option('datadir') + '/rpminspect'
 )
 install_subdir(

@@ -1,4 +1,4 @@
-# Fedora rawhide ABI checking whitelist
+# Fedora rawhide ABI checking control file
 
 #
 # This is the ABI checking control file.  rpminspect uses this information

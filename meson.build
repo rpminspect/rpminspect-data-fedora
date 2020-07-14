@@ -5,7 +5,7 @@ project('rpminspect-data-fedora',
 
 # Install data files
 install_subdir(
-    'abi-checking-whitelist',
+    'abi',
     install_dir : get_option('datadir') + '/rpminspect'
 )
 install_subdir(

@@ -1,6 +1,7 @@
 #
 # Fedora rawhide capabilities(7) list
 #
+# SPDX-License-Identifier: CC-BY-SA-4.0
 
 #
 # Lines beginning with '#' and blank lines are ignored.

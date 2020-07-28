@@ -4,7 +4,7 @@ Release:        1%{?dist}
 Epoch:          1
 Summary:        Build deviation compliance tool data files
 Group:          Development/Tools
-License:        GPLv3+
+License:        CC-BY-SA
 URL:            https://github.com/rpminspect/rpminspect-data-fedora
 Source0:        https://github.com/rpminspect/rpminspect-data-fedora/releases/download/v%%VERSION%%/%%TARBALL%%
 Source1:        changelog

@@ -1,4 +1,6 @@
 # Fedora rawhide ABI checking control file
+#
+# SPDX-License-Identifier: CC-BY-SA-4.0
 
 #
 # This is the ABI checking control file.  rpminspect uses this information

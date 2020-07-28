@@ -1,4 +1,6 @@
 # Fedora rawhide rebaseable packages
+#
+# SPDX-License-Identifier: CC-BY-SA-4.0
 
 #
 # List of rebaseable packages.  This file lists package names that

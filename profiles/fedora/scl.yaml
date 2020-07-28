@@ -1,4 +1,6 @@
 # rpminspect profile for SCL (Software Collections) builds
+#
+# SPDX-License-Identifier: CC-BY-SA-4.0
 
 ---
 inspections:

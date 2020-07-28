@@ -1,5 +1,7 @@
 # Fedora 29 stat(2) exceptions
 #
+# SPDX-License-Identifier: CC-BY-SA-4.0
+#
 # All files installed with setuid or setgid permissions must be listed
 # here with the expected permissions (st_mode), expected owner, and
 # expected group.  Blank lines and lines beginning with '#' are

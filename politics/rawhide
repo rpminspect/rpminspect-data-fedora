@@ -3,6 +3,8 @@
 # digest (MD5, SHA-1, or SHA-256) of the packaged file, and whether or
 # not it is allowed.
 #
+# SPDX-License-Identifier: CC-BY-SA-4.0
+#
 #
 #<filename regexp>  <message digest>                           <allow/deny>
 #

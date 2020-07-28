@@ -1,2 +1,3 @@
 #!/bin/sh
+# SPDX-License-Identifier: CC-BY-SA-4.0
 /usr/bin/rpminspect -c /usr/share/rpminspect/fedora.yaml $*

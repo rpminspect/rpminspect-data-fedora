@@ -34,7 +34,7 @@ the inspections provided by librpminspect.
 
 
 %files
-%license COPYING
+%license CC-BY-SA-4.0.txt
 %doc AUTHORS README
 %{_datadir}/rpminspect
 %{_bindir}/rpminspect-fedora

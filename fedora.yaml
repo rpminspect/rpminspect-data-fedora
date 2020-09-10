@@ -78,6 +78,10 @@ vendor:
     # with a disable setting that you can uncomment to turn off
     # certain ones.
     #
+    #%files: off
+    #DT_NEEDED: off
+    #LTO: off
+    #abidiff: off
     #addedfiles: off
     #annocheck: off
     #arch: off
@@ -86,17 +90,21 @@ vendor:
     #changelog: off
     #desktop: off
     #disttag: off
-    #DT_NEEDED: off
     #elf: off
     #emptyrpm: off
     #filesize: off
     #javabytecode: off
+
+    # Fedora does not guarantee a kernel ABI
+    kmidiff: off
+
     #kmod: off
     #license: off
-    #LTO: off
+    #lostpayload: off
     #manpage: off
     #metadata: off
     #modularity: off
+    #movedfiles: off
     #ownership: off
     #pathmigration: off
     #permissions: off

@@ -4,7 +4,7 @@
 # git commits for the project.  Requires consistent usage of
 # tagging for releases.
 #
-# Copyright (C) 2019 David Cantrell <david.l.cantrell@gmail.com>
+# Copyright (C) 2019-2020 David Cantrell <david.l.cantrell@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,8 +20,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-PATH=/usr/bin
-CWD="$(pwd)"
+PATH=/bin:/usr/bin
 
 # Start the changelog block
 version="$(grep version meson.build | head -n 1 | cut -d "'" -f 2)"
@@ -29,19 +28,20 @@ echo "* $(date +"%a %b %d %Y") $(git config user.name) <$(git config user.email)
 
 if [ "$1" = "--copr" ]; then
     # Just generate a simple changelog for copr builds
-    echo "- $(grep ^URL: *.spec.in | head -n 1 | awk '{ print $2; }')/commits/v${version}"
+    echo "- $(grep ^URL: ./*.spec.in | head -n 1 | awk '{ print $2; }')/commits/v${version}"
 else
     # Generate all the changelog entries
     PREV_TAG="$(git tag --sort=taggerdate | tail -n 2 | head -n 1)"
     LATEST_TAG="$(git tag --sort=taggerdate | tail -n 1)"
 
-    git log --format=%s ${PREV_TAG}..${LATEST_TAG} | tac | while read line ; do
+    git log --format=%s "${PREV_TAG}".."${LATEST_TAG}" | tac | while read -r line ; do
         echo "${line}" | grep -q -E "^New release " >/dev/null 2>&1
+        # shellcheck disable=SC2181
         [ $? -eq 0 ] && continue
 
         first=1
         echo "${line}" | sed -e 's|%|%%|g' | fold -s -w 70 | \
-        while read subline ; do
+        while read -r subline ; do
             if [ ${first} -eq 1 ]; then
                 echo "- ${subline}"
                 first=0

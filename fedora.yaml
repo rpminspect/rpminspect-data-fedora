@@ -78,7 +78,7 @@ vendor:
     # with a disable setting that you can uncomment to turn off
     # certain ones.
     #
-    #%files: off
+    #files: off
     #DT_NEEDED: off
     #LTO: off
     #abidiff: off
@@ -88,8 +88,10 @@ vendor:
     #capabilities: off
     #changedfiles: off
     #changelog: off
+    #config: off
     #desktop: off
     #disttag: off
+    #doc: off
     #elf: off
     #emptyrpm: off
     #filesize: off

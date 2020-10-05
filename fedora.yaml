@@ -110,6 +110,7 @@ vendor:
     #ownership: off
     #pathmigration: off
     #permissions: off
+    #politics: off
     #removedfiles: off
     #shellsyntax: off
     #specname: off
@@ -117,6 +118,7 @@ vendor:
     #symlinks: off
     #types: off
     #upstream: off
+    #virus: off
     #xml: off
 
 #products:

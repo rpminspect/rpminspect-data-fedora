@@ -79,7 +79,7 @@ vendor:
     # certain ones.
     #
     #files: off
-    #DT_NEEDED: off
+    #dsodeps: off
     #LTO: off
     #abidiff: off
     #addedfiles: off

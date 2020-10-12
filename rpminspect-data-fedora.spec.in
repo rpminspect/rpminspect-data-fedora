@@ -15,6 +15,19 @@ BuildRequires:  meson
 
 Requires:       rpminspect >= 1.1
 
+# Used by inspections enabled in the configuration file
+Requires:       xhtml1-dtds
+Requires:       html401-dtds
+Requires:       dash
+Requires:       ksh
+Requires:       zsh
+Requires:       tcsh
+Requires:       rc
+Requires:       bash
+Requires:       annobin-annocheck
+Requires:       libabigail
+
+
 %description
 Vendor specific configuration file for rpminspect and data files used by
 the inspections provided by librpminspect.

@@ -1,6 +1,10 @@
 MESON_BUILD_DIR = build
 topdir := $(shell realpath $(dir $(lastword $(MAKEFILE_LIST))))
 
+# Project information (may be an easier way to get this from meson)
+PROJECT_NAME = $(shell grep ^project $(topdir)/meson.build | cut -d "'" -f 2)
+PROJECT_VERSION = $(shell grep version $(topdir)/meson.build | grep -E ',$$' | cut -d "'" -f 2)
+
 all: setup
 	ninja -C $(MESON_BUILD_DIR) -v
 
@@ -19,8 +23,16 @@ new-release:
 release:
 	$(topdir)/utils/release.sh -t -p
 
-koji: srpm
-	$(topdir)/utils/submit-koji-builds.sh $$(ls -1 $(topdir)/*.tar.*) $$(basename $(topdir))
+koji:
+	@if [ ! -f $(RELEASED_TARBALL) ]; then \
+		echo "*** Missing $(RELEASED_TARBALL), be sure to have run 'make release'" >&2 ; \
+		exit 1 ; \
+	fi
+	@if [ ! -f $(RELEASED_TARBALL_ASC) ]; then \
+		echo "*** Missing $(RELEASED_TARBALL_ASC), be sure to have run 'make release'" >&2 ; \
+		exit 1 ; \
+	fi
+	$(topdir)/utils/submit-koji-builds.sh $(RELEASED_TARBALL) $(RELEASED_TARBALL_ASC) $$(basename $(topdir))
 
 clean:
 	-rm -rf $(MESON_BUILD_DIR)
@@ -50,4 +62,6 @@ help:
 	@echo "    make new-release     # bumps version number, tags, and pushes"
 	@echo
 	@echo "Generate SRPM of the latest release and do all Koji builds:"
-	@echo "    make koji"
+	@echo "    env BRANCHES=\"master f31 f32 f33 epel7 epel8\" make koji"
+	@echo "NOTE: You must set the BRANCHES environment variable for the koji target"
+	@echo "otherwise it will just build for the master branch."

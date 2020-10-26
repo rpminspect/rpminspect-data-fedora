@@ -20,7 +20,8 @@
 
 # Arguments:
 #     $1    Path to the release tarball to build
-#     $2    The name of the project in dist-git
+#     $2    Path to the detached signature for the release tarball
+#     $3    The name of the project in dist-git
 
 PATH=/usr/bin
 CWD="$(pwd)"
@@ -28,15 +29,10 @@ WRKDIR="$(mktemp -d)"
 
 # The list of tools that may or may not be installed locally but
 # that the script needs.  Extend this list if needed.
-TOOLS="klist fedpkg"
+TOOLS="klist"
 
 # What dist-git interaction tool we are using, e.g. Fedora is 'fedpkg'
 VENDORPKG="fedpkg"
-
-# Allow the calling environment to override the list of dist-git branches
-if [ -z "${BRANCHES}" ]; then
-    BRANCHES="master"
-fi
 
 cleanup() {
     rm -rf "${WRKDIR}"
@@ -45,7 +41,7 @@ cleanup() {
 trap cleanup EXIT
 
 # Verify specific tools are available
-for tool in ${TOOLS} ; do
+for tool in ${TOOLS} ${VENDORPKG} ; do
     ${tool} >/dev/null 2>&1
     if [ $? -eq 127 ]; then
         echo "*** Missing '${tool}', perhaps 'yum install -y /usr/bin/${tool}'" >&2
@@ -68,6 +64,26 @@ fi
 
 if ! tar tf "${TARBALL}" >/dev/null 2>&1 ; then
     echo "*** $(basename "${TARBALL}") is not a tar archive" >&2
+    exit 1
+fi
+
+shift
+
+# Need tarball signature
+if [ $# -eq 0 ]; then
+    echo "*** Missing detached signature of release tarball" >&2
+    exit 1
+fi
+
+TARBALL_ASC="$(realpath "$1")"
+
+if [ ! -f "${TARBALL_ASC}" ]; then
+    echo "*** $(basename "${TARBALL_ASC}") does not exist" >&2
+    exit 1
+fi
+
+if [ ! "$(file -b --mime-type "${TARBALL_ASC}")" = "application/pgp-signature" ]; then
+    echo "*** $(basename "${TARBALL_ASC}") is not a gpg signature" >&2
     exit 1
 fi
 
@@ -105,6 +121,11 @@ cd "${WRKDIR}" || exit
 ${VENDORPKG} co "${PROJECT}"
 cd "${PROJECT}" || exit
 
+# Allow the calling environment to override the list of dist-git branches
+if [ -z "${BRANCHES}" ]; then
+    BRANCHES="$(git branch -r | grep -vE "(HEAD)" | cut -d '/' -f 2 | sort | xargs)"
+fi
+
 for branch in ${BRANCHES} ; do
     git clean -d -x -f
     git config user.name "${GIT_USERNAME}"
@@ -112,9 +133,10 @@ for branch in ${BRANCHES} ; do
 
     # make sure we are on the right branch
     ${VENDORPKG} switch-branch ${branch}
+    git pull
 
     # add the new source archive
-    ${VENDORPKG} new-sources "${TARBALL}"
+    ${VENDORPKG} new-sources "${TARBALL}" "${TARBALL}".asc
 
     # extract any changelog entries that appeared in the spec file
     sed -n '/^%changelog/,/^%include\ \%{SOURCE1}/p' "${PROJECT}".spec | \

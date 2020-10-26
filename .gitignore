@@ -1,4 +1,5 @@
-changelog
-rpminspect-data-fedora.spec
 *.src.rpm
 *.tar.xz
+build
+changelog
+rpminspect-data-fedora.spec

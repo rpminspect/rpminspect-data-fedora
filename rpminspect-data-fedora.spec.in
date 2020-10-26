@@ -7,8 +7,7 @@ Group:          Development/Tools
 License:        CC-BY-SA
 URL:            https://github.com/rpminspect/rpminspect-data-fedora
 Source0:        https://github.com/rpminspect/rpminspect-data-fedora/releases/download/v%%VERSION%%/%%TARBALL%%
-Source1:        https://github.com/rpminspect/rpminspect-data-fedora/releases/download/v%%VERSION%%/%%TARBALL%%.asc
-Source2:        changelog
+Source1:        changelog
 
 BuildArch:      noarch
 
@@ -55,4 +54,4 @@ the inspections provided by librpminspect.
 
 
 %changelog
-%include %{SOURCE2}
+%include %{SOURCE1}

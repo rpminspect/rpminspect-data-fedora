@@ -5,6 +5,11 @@ topdir := $(shell realpath $(dir $(lastword $(MAKEFILE_LIST))))
 PROJECT_NAME = $(shell grep ^project $(topdir)/meson.build | cut -d "'" -f 2)
 PROJECT_VERSION = $(shell grep version $(topdir)/meson.build | grep -E ',$$' | cut -d "'" -f 2)
 
+# full path to release tarball and detached signature
+# (this comes from a 'make release')
+RELEASED_TARBALL = $(topdir)/$(MESON_BUILD_DIR)/meson-dist/$(PROJECT_NAME)-$(PROJECT_VERSION).tar.xz
+RELEASED_TARBALL_ASC = $(RELEASED_TARBALL).asc
+
 all: setup
 	ninja -C $(MESON_BUILD_DIR) -v
 
@@ -23,7 +28,7 @@ new-release:
 release:
 	$(topdir)/utils/release.sh -t -p
 
-koji:
+koji: srpm
 	@if [ ! -f $(RELEASED_TARBALL) ]; then \
 		echo "*** Missing $(RELEASED_TARBALL), be sure to have run 'make release'" >&2 ; \
 		exit 1 ; \

@@ -7,13 +7,14 @@ Group:          Development/Tools
 License:        CC-BY-SA
 URL:            https://github.com/rpminspect/rpminspect-data-fedora
 Source0:        https://github.com/rpminspect/rpminspect-data-fedora/releases/download/v%%VERSION%%/%%TARBALL%%
-Source1:        changelog
+Source1:        https://github.com/rpminspect/rpminspect-data-fedora/releases/download/v%%VERSION%%/%%TARBALL%%.asc
+Source2:        changelog
 
 BuildArch:      noarch
 
 BuildRequires:  meson
 
-Requires:       rpminspect >= 1.1
+Requires:       rpminspect >= 1.2
 
 # Used by inspections enabled in the configuration file
 Requires:       xhtml1-dtds
@@ -54,4 +55,4 @@ the inspections provided by librpminspect.
 
 
 %changelog
-%include %{SOURCE1}
+%include %{SOURCE2}

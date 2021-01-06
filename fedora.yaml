@@ -29,6 +29,32 @@ koji:
     # The download URL for modular packages built in Koji
     download_mbs: https://kojipkgs.fedoraproject.org
 
+commands:
+    # External helper commands used by rpminspect.  Defaults are noted.
+
+    # diff(1) command, must support -u, -w, and -I options as defined
+    # in GNU diff.
+    #diff: /usr/bin/diff
+
+    # diffstat(1) command.
+    # https://invisible-island.net/diffstat/
+    #diffstat: /usr/bin/diffstat
+
+    # msgunfmt(1) as found in GNU gettext
+    #msgunfmt: /usr/bin/msgunfmt
+
+    # desktop-file-validate(1) from the desktop-file-utils project at
+    # Freedesktop.org
+    #desktop-file-validate: /usr/bin/desktop-file-validate
+
+    # annocheck(1) from the annobin project:
+    # https://sourceware.org/git/annobin.git
+    #annocheck: /usr/bin/annocheck
+
+    # abidiff(1) and kmidiff(1) from libabigail
+    #abidiff: /usr/bin/abidiff
+    #kmidiff: /usr/bin/kmidiff
+
 vendor:
     # Where the vendor data files can be found.  The
     # rpminspect-data-generic package provides a template of where
@@ -78,9 +104,6 @@ vendor:
     # with a disable setting that you can uncomment to turn off
     # certain ones.
     #
-    #files: off
-    #dsodeps: off
-    #LTO: off
     #abidiff: off
     #addedfiles: off
     #annocheck: off
@@ -92,8 +115,10 @@ vendor:
     #desktop: off
     #disttag: off
     #doc: off
+    #dsodeps: off
     #elf: off
     #emptyrpm: off
+    #files: off
     #filesize: off
     #javabytecode: off
 
@@ -103,11 +128,18 @@ vendor:
     #kmod: off
     #license: off
     #lostpayload: off
+    #lto: off
     #manpage: off
     #metadata: off
     #modularity: off
     #movedfiles: off
     #ownership: off
+
+    # Fedora frequently changes and there is no API guarantee, though
+    # some packages want to enable this inspection on an individual
+    # basis
+    patches: off
+
     #pathmigration: off
     #permissions: off
     #politics: off
@@ -505,3 +537,22 @@ kmidiff:
     #
     # NOTE:  This filename is relative to kabi_dir.
     #kabi_filename: kabi_whitelist_${ARCH}
+
+patches:
+    # List of patch files to ignore in the 'patches' inspection.
+    # These should match the name as specified on a PatchN: line in
+    # the spec file.
+    #ignore_list:
+    #    - example.patch
+
+    # Reporting threshold for number of files that a patch modifies.
+    # If a patch modifies more than this number of files, the
+    # reporting message will mention it explicitly.  The default is
+    # 20 files.
+    file_count_threshold: 20
+
+    # Reporting theshold for number of lines that a patch modifies.
+    # If a patch modifies more than this number of lines, the
+    # reporting message will mention it explicitly.  The default is
+    # 5000 lines.
+    line_count_threshold: 5000

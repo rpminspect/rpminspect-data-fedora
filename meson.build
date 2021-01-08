@@ -4,7 +4,7 @@ project('rpminspect-data-fedora',
         meson_version : '>=0.47.0')
 
 # Perform any tests on data
-license_keys_unique = find_program('license_keys_unique.sh', dirs : [ meson.project_source_root() ] )
+license_keys_unique = find_program('license_keys_unique.sh')
 test('license-keys-unique', license_keys_unique)
 
 # Install data files

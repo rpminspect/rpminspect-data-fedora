@@ -27,3 +27,51 @@ run.  They are just a convenient way to centralize vendor-specific
 data used by rpminspect.  Care should be taken creating
 vendor-specific data packages so they do not collide with other data
 packages users may want installed.
+
+
+RELEASING
+---------
+
+Make sure everything builds cleanly.  Then start from a clean tree:
+
+    git clean -d -x -f
+
+If you have not bumped the version number for the development release,
+then do:
+
+    make new-release
+
+If you have already bumped the version number, then do:
+
+    make release
+
+You can compare the latest tag to the version number in meson.build to
+see if you bumped it or not if you have forgotten.  For example:
+
+    LATEST_VER="$(grep " version : " meson.build | cut -d "'" -f 2)"
+    LATEST_TAG="$(git tag -l | cut -c2- | sort -n | tail -n 1)"
+
+That's complicated, so I made it easier for you:
+
+    make did-i-bumpver
+
+If those two strings match, you did not bump the version number during
+development so run 'make new-release'.  'make did-i-bumpver' will
+report its findings too.
+
+Now run:
+
+    make srpm
+
+Then go to GitHub and create a new release entry.  Paste the contents
+of the 'changelog' file minus the first line for the description of
+the release.  Bind the release to the tag you just made and call it
+rpminspect-data-fedora-VERSION.  Attached the tarball and detached asc
+signature from the build/meson-dist/ subdirectory.
+
+Lastly, do the builds in koji.  Set the dist-git branches to build for
+using the BRANCHES environment variable.  For example:
+
+    env BRANCHES="master f31 f32 f33 epel7 epel8" make koji
+
+Ensure you have a Fedora Kerberos ticket before doing this.

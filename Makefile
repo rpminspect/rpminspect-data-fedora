@@ -10,6 +10,10 @@ PROJECT_VERSION = $(shell grep version $(topdir)/meson.build | grep -E ',$$' | c
 RELEASED_TARBALL = $(topdir)/$(MESON_BUILD_DIR)/meson-dist/$(PROJECT_NAME)-$(PROJECT_VERSION).tar.xz
 RELEASED_TARBALL_ASC = $(RELEASED_TARBALL).asc
 
+# where we keep version numbers
+LATEST_VER = $(shell grep " version : " meson.build | cut -d "'" -f 2)
+LATEST_TAG = $(shell git tag -l | cut -c2- | sort -n | tail -n 1)
+
 all: setup
 	ninja -C $(MESON_BUILD_DIR) -v
 
@@ -38,6 +42,14 @@ koji: srpm
 		exit 1 ; \
 	fi
 	$(topdir)/utils/submit-koji-builds.sh $(RELEASED_TARBALL) $(RELEASED_TARBALL_ASC) $$(basename $(topdir))
+
+did-i-bumpver:
+	@if [ "$(LATEST_VER)" = "$(LATEST_TAG)" ]; then\
+		echo "The version in meson.build ($(LATEST_VER)) matches the latest tagged release ($(LATEST_TAG))," ; \
+		echo "so you probably did not increment the version number during development." ; \
+	else \
+		echo "meson.build version ($(LATEST_VER)) is different than latest tagged release ($(LATEST_TAG))." ; \
+	fi
 
 clean:
 	-rm -rf $(MESON_BUILD_DIR)

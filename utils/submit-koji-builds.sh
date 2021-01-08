@@ -2,7 +2,7 @@
 #
 # Build new releases in Koji
 #
-# Copyright (C) 2019-2020 David Cantrell <david.l.cantrell@gmail.com>
+# Copyright (C) 2019-2021 David Cantrell <david.l.cantrell@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -34,6 +34,9 @@ TOOLS="klist"
 # What dist-git interaction tool we are using, e.g. Fedora is 'fedpkg'
 VENDORPKG="fedpkg"
 
+# What package build tool is in use
+VENDORBLD="koji"
+
 cleanup() {
     rm -rf "${WRKDIR}"
 }
@@ -41,7 +44,7 @@ cleanup() {
 trap cleanup EXIT
 
 # Verify specific tools are available
-for tool in ${TOOLS} ${VENDORPKG} ; do
+for tool in ${TOOLS} ${VENDORPKG} ${VENDORBLD} ; do
     ${tool} >/dev/null 2>&1
     if [ $? -eq 127 ]; then
         echo "*** Missing '${tool}', perhaps 'yum install -y /usr/bin/${tool}'" >&2
@@ -129,9 +132,9 @@ if [ -z "${BRANCHES}" ]; then
 fi
 
 for branch in ${BRANCHES} ; do
-    # skip this branch if there is no koji target
-    if ! koji list-targets | grep -q "${branch}" >/dev/null 2>&1 ; then
-        echo "*** skipping branch ${branch} because there are no Koji build targets"
+    # skip this branch if there is no build target
+    if ! ${VENDORBLD} list-targets | grep -q "${branch}" >/dev/null 2>&1 ; then
+        echo "*** skipping branch ${branch} because there are no ${VENDORBLD} build targets"
         continue
     fi
 

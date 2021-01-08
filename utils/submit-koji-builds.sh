@@ -120,6 +120,8 @@ cd "${CWD}" || exit
 cd "${WRKDIR}" || exit
 ${VENDORPKG} co "${PROJECT}"
 cd "${PROJECT}" || exit
+git config user.name "${GIT_USERNAME}"
+git config user.email "${GIT_USEREMAIL}"
 
 # Allow the calling environment to override the list of dist-git branches
 if [ -z "${BRANCHES}" ]; then
@@ -127,9 +129,14 @@ if [ -z "${BRANCHES}" ]; then
 fi
 
 for branch in ${BRANCHES} ; do
+    # skip this branch if there is no koji target
+    if ! koji list-targets | grep -q "${branch}" >/dev/null 2>&1 ; then
+        echo "*** skipping branch ${branch} because there are no Koji build targets"
+        continue
+    fi
+
+    # clean it
     git clean -d -x -f
-    git config user.name "${GIT_USERNAME}"
-    git config user.email "${GIT_USEREMAIL}"
 
     # make sure we are on the right branch
     ${VENDORPKG} switch-branch ${branch}

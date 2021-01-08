@@ -69,9 +69,12 @@ the release.  Bind the release to the tag you just made and call it
 rpminspect-data-fedora-VERSION.  Attached the tarball and detached asc
 signature from the build/meson-dist/ subdirectory.
 
-Lastly, do the builds in koji.  Set the dist-git branches to build for
-using the BRANCHES environment variable.  For example:
+Lastly, do the builds in koji.  You can build for a subset of branches
+by using the BRANCHES environment variable:
 
-    env BRANCHES="master f31 f32 f33 epel7 epel8" make koji
+    env BRANCHES="f33 epel7" make koji
+
+By default, 'make koji' will built for all branches present in the
+project that have koji build targets.
 
 Ensure you have a Fedora Kerberos ticket before doing this.

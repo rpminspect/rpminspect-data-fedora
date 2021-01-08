@@ -78,7 +78,10 @@ help:
 	@echo "    make release         # just tags and pushes"
 	@echo "    make new-release     # bumps version number, tags, and pushes"
 	@echo
-	@echo "Generate SRPM of the latest release and do all Koji builds:"
-	@echo "    env BRANCHES=\"master f31 f32 f33 epel7 epel8\" make koji"
-	@echo "NOTE: You must set the BRANCHES environment variable for the koji target"
-	@echo "otherwise it will just build for the master branch."
+	@echo "Submit builds:"
+	@echo "    make koji            # build for all branches with build targets"
+	@echo
+	@echo "You can build for a subset of branches by specifying BRANCHES:"
+	@echo "    env BRANCHES=\"f33 epel7\" make koji"
+	@echo "By default, the koji target will build for all project branches found"
+	@echo "in the repo that have corresponding koji build targets."

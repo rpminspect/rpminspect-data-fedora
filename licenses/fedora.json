@@ -5785,8 +5785,8 @@
     "fedora_name": "lha license",
     "id": "300",
     "license_text": "",
-    "spdx_abbrev": "",
-    "spdx_name": "",
+    "spdx_abbrev": "#No official SPDX support as of 2020-04-21",
+    "spdx_name": "#No official SPDX support as of 20202-04-21",
     "url": "https://packages.debian.org/changelogs/pool/non-free/l/lha/current/copyright"
   },
   "libpng License": {
@@ -6589,7 +6589,7 @@
     "spdx_name": "#No official SPDX support as of 20202-04-21",
     "url": "https://fedoraproject.org/wiki/Licensing/NISTSL"
   },
-  "Perl License (variant)": {
+  "Perl License (variant w/ GPLv2+)": {
     "approved": "yes",
     "fedora_abbrev": "GPLv2+ or Artistic",
     "fedora_name": "Perl License (variant)",
@@ -6599,7 +6599,7 @@
     "spdx_name": "#No official SPDX support as of 20202-04-21",
     "url": ""
   },
-  "Perl License (variant)": {
+  "Perl License (variant w/ LGPLv2+)": {
     "approved": "yes",
     "fedora_abbrev": "LGPLv2+ or Artistic",
     "fedora_name": "Perl License (variant)",
@@ -6648,16 +6648,6 @@
     "spdx_abbrev": "#No official SPDX support as of 2020-04-21",
     "spdx_name": "#No official SPDX support as of 20202-04-21",
     "url": "https://fedoraproject.org/wiki/Licensing/CommonsClause"
-  },
-  "lha license": {
-    "approved": "no",
-    "fedora_abbrev": "",
-    "fedora_name": "",
-    "id": "662",
-    "license_text": "",
-    "spdx_abbrev": "#No official SPDX support as of 2020-04-21",
-    "spdx_name": "#No official SPDX support as of 20202-04-21",
-    "url": "http://packages.debian.org/changelogs/pool/non-free/l/lha/current/copyright"
   },
   "Server Side Public License v1 (SSPL)": {
     "approved": "no",
@@ -6708,8 +6698,8 @@
     "spdx_abbrev": "#No official SPDX support as of 2020-09-10",
     "spdx_name": "#No official SPDX support as of 2020-09-10",
     "url": "https://docs.fedoraproject.org/en-US/packaging-guidelines/LicensingGuidelines/#_firmware"
-   },
-   "Distributable": {
+  },
+  "Distributable": {
     "approved": "yes",
     "fedora_abbrev": "",
     "fedora_name": "Freely redistributable without restriction",
@@ -6718,5 +6708,5 @@
     "spdx_abbrev": "#No official SPDX support as of 2020-09-10",
     "spdx_name": "#No official SPDX support as of 2020-09-10",
     "url": "https://docs.fedoraproject.org/en-US/packaging-guidelines/LicensingGuidelines/#_distributable"
-   },
+  },
 }

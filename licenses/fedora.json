@@ -6709,4 +6709,12 @@
     "spdx_name": "#No official SPDX support as of 2020-09-10",
     "url": "https://docs.fedoraproject.org/en-US/packaging-guidelines/LicensingGuidelines/#_distributable"
   },
+  "Nmap Public Source License": {
+    "approved": "no",
+    "fedora_abbrev": "npsl",
+    "fedora_name": "Nmap Public Source License",
+    "id": ,
+    "license_text": "",
+    "url": "https://nmap.org/npsl/npsl-annotated.html"
+  },
 }

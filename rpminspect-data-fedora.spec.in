@@ -13,7 +13,7 @@ BuildArch:      noarch
 
 BuildRequires:  meson
 
-Requires:       rpminspect >= 1.2
+Requires:       rpminspect >= 1.3
 
 # Used by inspections enabled in the configuration file
 Requires:       xhtml1-dtds

@@ -6717,4 +6717,13 @@
     "license_text": "",
     "url": "https://nmap.org/npsl/npsl-annotated.html"
   },
+  "MIT No Attribution License": {
+     "approved": "yes",
+     "fedora_abbrev": "MIT-0",
+     "fedora_name": "MIT No Attribution License",
+     "id": "670",
+     "spdx_abbrev": "MIT-0",
+     "spdx_name": "MIT No Attribution License",
+     "url": "https://spdx.org/licenses/MIT-0.html"
+  }
 }

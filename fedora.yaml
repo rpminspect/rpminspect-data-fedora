@@ -145,6 +145,7 @@ vendor:
     #permissions: off
     #politics: off
     #removedfiles: off
+    #runpath: off
     #shellsyntax: off
     #specname: off
     #subpackages: off
@@ -559,3 +560,38 @@ badfuncs:
     - rcmd
     - rexec
     - rresvport
+
+runpath:
+    # Allowed DT_RUNPATH and DT_RPATH path elements when the element
+    # is an explicit directory (i.e., does not begin with $ORIGIN).
+    # The path is resolved if "../" is found and the resulting
+    # resolved path is compared against this list.
+    #
+    # NOTE: Path elements are matched explicitly.  Trailing slashes
+    # are significant.  If you list "/usr/src/kernels" here but the
+    # value in the ELF object is "/usr/src/kernels/", the test will
+    # fail.
+    #allowed_paths:
+    #    - /usr/src/kernels/
+
+    # Allowed DT_RUNPATH and DT_RPATH path elements when the value
+    # begins with $ORIGIN and "../" entries are resolved.  This list
+    # of path elements is allowed after trimming the leading "$ORIGIN"
+    # value and the optional 'origin_prefix_trim' string if one is
+    # found.
+    #
+    # NOTE: The same trailing slash consideration applies here that
+    # applies to the 'allowed_paths' list.
+    allowed_origin_paths:
+        - /
+        - /usr
+        - /lib
+        - /lib64
+
+    # Optional list of regular expressions to trim after an $ORIGIN
+    # entry in DT_RPATH or DT_RUNPATH.  If any of these regular
+    # expressions match, the matching substring is trimmed after
+    # "$ORIGIN" is trimmed and the remaining substring is validated
+    # against the 'allowed_origin_paths' list.
+    origin_prefix_trim:
+        - ^(opt/rh/[^/]+/root/)

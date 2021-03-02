@@ -1,0 +1,20 @@
+# rpminspect profile for Fedora rawhide
+
+---
+inspections:
+    changedfiles: off
+    movedfiles: off
+    removedfiles: off
+    addedfiles: off
+    upstream: off
+    filesize: off
+    kmod: off
+    arch: off
+    subpackages: off
+    dsodeps: off
+    types: off
+    config: off
+    patches: off
+    kmidiff: off
+    lostpayload: off
+    doc: off

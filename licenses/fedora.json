@@ -6713,7 +6713,7 @@
     "approved": "no",
     "fedora_abbrev": "npsl",
     "fedora_name": "Nmap Public Source License",
-    "id": ,
+    "id": "669",
     "license_text": "",
     "url": "https://nmap.org/npsl/npsl-annotated.html"
   },
@@ -6725,5 +6725,5 @@
      "spdx_abbrev": "MIT-0",
      "spdx_name": "MIT No Attribution License",
      "url": "https://spdx.org/licenses/MIT-0.html"
-  }
+  },
 }

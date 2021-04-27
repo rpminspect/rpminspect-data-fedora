@@ -449,6 +449,12 @@ files:
     forbidden_paths:
         - /usr/lib
 
+    ignore:
+        # location of dracut modules, not available via a macro
+        - /usr/lib/dracut
+        # location of udev helper binaries, not available via a macro
+        - /usr/lib/udev
+
 abidiff:
     # The name of the optional ABI suppression file that SRPMs can
     # include.  This file is used with abidiff(1) in the abidiff

@@ -1,6 +1,5 @@
 #
 # rpminspect configuration file
-# See rpminspect.yaml(5) for more information.
 #
 # SPDX-License-Identifier: CC-BY-SA-4.0
 #
@@ -169,10 +168,10 @@ vendor:
     # 2) Rely on the product release string regexps in rpminspect.yaml
     #
     # Some products may have a variety of dist tags, so you can
-    # construct a regular expression to match them.  For example,
-    # let's say your dist tags are ".fc31, .fc31server, .fc31laptop".
-    # You want to use "fc31" for all of these, so you can add a rule
-    # here that looks like:
+    # construct a regular expression (man 7 regex) to match them.  For
+    # example, let's say your dist tags are ".fc31, .fc31server,
+    # .fc31laptop".  You want to use "fc31" for all of these, so you
+    # can add a rule here that looks like:
     #
     #     - fc31: ^\.fc31.*$
     #
@@ -235,40 +234,77 @@ metadata:
 
 elf:
     # File paths to include in or exclude from specific tests. Each
-    # value is a POSIX extended regular expression. Individual tests
-    # may apply additional filters (e.g., ELF tests only run on ELF
-    # files)
+    # value is a POSIX extended regular expression (man 7
+    # regex). Individual tests may apply additional filters (e.g., ELF
+    # tests only run on ELF files)
     #
     # For ELF, skip the kernel, kernel modules, and two additional
     # paths for ppc/ppc64: crtsavres.o is linked against kernel
     # modules, and kernel-wrapper is a boot wrapper that should not be
     # inspected.
     #
-    # These are regular expressions used by regexp(3).
+    # These are regular expressions used by regex(3).  See regex(7)
+    # for more info.
     #include_path:
     exclude_path: (^(/boot/vmlinu|/lib/modules|/lib64/modules).*)|(.*/powerpc/lib/crtsavres.o$)|(^/usr/lib(64)?/kernel-wrapper$)
 
+    # Optional list of glob(7) specifications to match files to ignore
+    # for this inspection.  The format of this list is the same as the
+    # global 'ignore' list.  The difference is the items specified
+    # here will only be used during this inspection.
+    #ignore:
+    #    - /usr/lib*/libexample.so*
+
+#emptyrpm:
+    # Optional list of packages in a build that will contain an empty
+    # payload.  Useful for SRPMs that build metapackages that will
+    # always have an empty payload.
+    #expected_empty:
+    #    - metapackagename
+
 manpage:
-    # Regular expression matching man page installation directories.
+    # Regular expression (man 7 regex) matching man page installation
+    # directories.
     include_path: ^/usr/share/man/.*
 
-    # Regular expression matching directories to ignore during the
-    # man page inspection.
+    # Regular expression (man 7 regex) matching directories to ignore
+    # during the man page inspection.
     #exclude_path:
 
+    # Optional list of glob(7) specifications to match files to ignore
+    # for this inspection.  The format of this list is the same as the
+    # global 'ignore' list.  The difference is the items specified
+    # here will only be used during this inspection.
+    #ignore:
+    #    - /usr/lib*/libexample.so*
+
 xml:
-    # Regular expression matching directories to include in the xml
-    # expression.
+    # Regular expression (man 7 regex) matching directories to include
+    # in the xml expression.
     #include_path:
 
-    # Regular expression matching directories to ignore during the xml
-    # inspection. Skip JSP and RHTML files, which contain a mix of XML
-    # and code.
+    # Regular expression (man 7 regex) matching directories to ignore
+    # during the xml inspection. Skip JSP and RHTML files, which
+    # contain a mix of XML and code.
     exclude_path: .*(\.jsp|\.rhtml|\.xml\.in)$
+
+    # Optional list of glob(7) specifications to match files to ignore
+    # for this inspection.  The format of this list is the same as the
+    # global 'ignore' list.  The difference is the items specified
+    # here will only be used during this inspection.
+    #ignore:
+    #    - /usr/lib*/libexample.so*
 
 desktop:
     # Where desktop entry files live
     desktop_entry_files_dir: /usr/share/applications
+
+    # Optional list of glob(7) specifications to match files to ignore
+    # for this inspection.  The format of this list is the same as the
+    # global 'ignore' list.  The difference is the items specified
+    # here will only be used during this inspection.
+    #ignore:
+    #    - /usr/lib*/libexample.so*
 
 changedfiles:
     # Optional: Filename extensions expected for C and C++ header files
@@ -278,6 +314,13 @@ changedfiles:
         - .hxx
         - .hpp
         - .H
+
+    # Optional list of glob(7) specifications to match files to ignore
+    # for this inspection.  The format of this list is the same as the
+    # global 'ignore' list.  The difference is the items specified
+    # here will only be used during this inspection.
+    #ignore:
+    #    - /usr/lib*/libexample.so*
 
 addedfiles:
     # Optional: Forbidden path prefixes, space delimited list.
@@ -299,6 +342,13 @@ addedfiles:
         - .svn
         - .hg
         - .git
+
+    # Optional list of glob(7) specifications to match files to ignore
+    # for this inspection.  The format of this list is the same as the
+    # global 'ignore' list.  The difference is the items specified
+    # here will only be used during this inspection.
+    #ignore:
+    #    - /usr/lib*/libexample.so*
 
 ownership:
     # Path prefixes where executable files live
@@ -322,6 +372,13 @@ ownership:
     forbidden_groups:
         - mockbuild
 
+    # Optional list of glob(7) specifications to match files to ignore
+    # for this inspection.  The format of this list is the same as the
+    # global 'ignore' list.  The difference is the items specified
+    # here will only be used during this inspection.
+    #ignore:
+    #    - /usr/lib*/libexample.so*
+
 shellsyntax:
     # List of shells used to perform syntax checking (must support -n)
     # This is used by the shellsyntax inspection.  For every shell
@@ -340,11 +397,25 @@ shellsyntax:
         - rc
         - bash
 
+    # Optional list of glob(7) specifications to match files to ignore
+    # for this inspection.  The format of this list is the same as the
+    # global 'ignore' list.  The difference is the items specified
+    # here will only be used during this inspection.
+    #ignore:
+    #    - /usr/lib*/libexample.so*
+
 filesize:
     # File size reporting threshold percentage.  What percentage
     # change warrants reporting a VERIFY result?  This change can be
     # file size increase or decrease.  The default is 20%
     size_threshold: 20
+
+    # Optional list of glob(7) specifications to match files to ignore
+    # for this inspection.  The format of this list is the same as the
+    # global 'ignore' list.  The difference is the items specified
+    # here will only be used during this inspection.
+    #ignore:
+    #    - /usr/lib*/libexample.so*
 
 lto:
     # Link Time Optimization symbol name prefixes. Symbols are checked
@@ -357,6 +428,13 @@ lto:
         - .gnu.debuglto_
         - __gnu_lto_v1
         - __gnu_lto_slim
+
+    # Optional list of glob(7) specifications to match files to ignore
+    # for this inspection.  The format of this list is the same as the
+    # global 'ignore' list.  The difference is the items specified
+    # here will only be used during this inspection.
+    #ignore:
+    #    - /usr/lib*/libexample.so*
 
 specname:
     # Spec filename test matching type.
@@ -397,6 +475,13 @@ annocheck:
     # here, rpminspect will skip the annocheck inspection.
     - hardened: --ignore-unknown --verbose
 
+    # Optional list of glob(7) specifications to match files to ignore
+    # for this inspection.  The format of this list is the same as the
+    # global 'ignore' list.  The difference is the items specified
+    # here will only be used during this inspection.
+    #ignore:
+    #    - /usr/lib*/libexample.so*
+
 javabytecode:
     # Minimum major JVM version number for each product release.  The
     # key should be the product release string that you will use
@@ -416,6 +501,13 @@ javabytecode:
     - fc33: 55
     - fc34: 55
     - default: 43
+
+    # Optional list of glob(7) specifications to match files to ignore
+    # for this inspection.  The format of this list is the same as the
+    # global 'ignore' list.  The difference is the items specified
+    # here will only be used during this inspection.
+    #ignore:
+    #    - /usr/lib*/libexample.so*
 
 pathmigration:
     # Path migrations.  Over time the established best practices or
@@ -441,6 +533,13 @@ pathmigration:
     excluded_paths:
         - /lib/modules
 
+    # Optional list of glob(7) specifications to match files to ignore
+    # for this inspection.  The format of this list is the same as the
+    # global 'ignore' list.  The difference is the items specified
+    # here will only be used during this inspection.
+    #ignore:
+    #    - /usr/lib*/libexample.so*
+
 files:
     # %files sections in spec files.  Some checks are performed on
     # these sections.  The settings here control those checks.
@@ -449,6 +548,11 @@ files:
     forbidden_paths:
         - /usr/lib
 
+    # Optional list of path prefixes to ignore when checking for
+    # forbidden paths in the %files section.  For example, a package
+    # may need to provide files in /usr/lib/dracut but anything else
+    # in /usr/lib is forbidden.  In that case, list /usr/lib/dracut/
+    # in the ignore list here.
     ignore:
         # location of dracut modules, not available via a macro
         - /usr/lib/dracut
@@ -478,6 +582,13 @@ abidiff:
     # cause packages and DSOs at ABI compatibility levels 1 and 2 to
     # report abidiff(1) findings with a security severity.
     security_level_threshold: 2
+
+    # Optional list of glob(7) specifications to match files to ignore
+    # for this inspection.  The format of this list is the same as the
+    # global 'ignore' list.  The difference is the items specified
+    # here will only be used during this inspection.
+    #ignore:
+    #    - /usr/lib*/libexample.so*
 
 kmidiff:
     # The name of the optional ABI suppression file that SRPMs can
@@ -521,6 +632,13 @@ kmidiff:
     #
     # NOTE:  This filename is relative to kabi_dir.
     #kabi_filename: kabi_whitelist_${ARCH}
+
+    # Optional list of glob(7) specifications to match files to ignore
+    # for this inspection.  The format of this list is the same as the
+    # global 'ignore' list.  The difference is the items specified
+    # here will only be used during this inspection.
+    #ignore:
+    #    - /usr/lib*/libexample.so*
 
 patches:
     # List of patch files to ignore in the 'patches' inspection.
@@ -567,6 +685,13 @@ badfuncs:
     - rexec
     - rresvport
 
+    # Optional list of glob(7) specifications to match files to ignore
+    # for this inspection.  The format of this list is the same as the
+    # global 'ignore' list.  The difference is the items specified
+    # here will only be used during this inspection.
+    #ignore:
+    #    - /usr/lib*/libexample.so*
+
 runpath:
     # Allowed DT_RUNPATH and DT_RPATH path elements when the element
     # is an explicit directory (i.e., does not begin with $ORIGIN).
@@ -594,10 +719,17 @@ runpath:
         - /lib
         - /lib64
 
-    # Optional list of regular expressions to trim after an $ORIGIN
-    # entry in DT_RPATH or DT_RUNPATH.  If any of these regular
-    # expressions match, the matching substring is trimmed after
-    # "$ORIGIN" is trimmed and the remaining substring is validated
-    # against the 'allowed_origin_paths' list.
+    # Optional list of regular expressions (man 7 regex) to trim after
+    # an $ORIGIN entry in DT_RPATH or DT_RUNPATH.  If any of these
+    # regular expressions match, the matching substring is trimmed
+    # after "$ORIGIN" is trimmed and the remaining substring is
+    # validated against the 'allowed_origin_paths' list.
     origin_prefix_trim:
         - ^(opt/rh/[^/]+/root/)
+
+    # Optional list of glob(7) specifications to match files to ignore
+    # for this inspection.  The format of this list is the same as the
+    # global 'ignore' list.  The difference is the items specified
+    # here will only be used during this inspection.
+    #ignore:
+    #    - /usr/lib*/libexample.so*

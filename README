@@ -29,8 +29,8 @@ vendor-specific data packages so they do not collide with other data
 packages users may want installed.
 
 
-RELEASING
----------
+RELEASING (notes for the package maintainer, not ordinary users)
+----------------------------------------------------------------
 
 Make sure everything builds cleanly.  Then start from a clean tree:
 

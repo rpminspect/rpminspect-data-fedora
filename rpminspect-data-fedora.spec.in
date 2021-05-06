@@ -29,8 +29,8 @@ Requires:       libabigail
 
 
 %description
-Vendor specific configuration file for rpminspect and data files used by
-the inspections provided by librpminspect.
+Fedora Linux specific configuration file for rpminspect and data files
+used by the inspections provided by librpminspect.
 
 
 %prep

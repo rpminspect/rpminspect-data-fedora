@@ -1,0 +1,94 @@
+# Fedora 29 stat(2) exceptions
+#
+# SPDX-License-Identifier: CC-BY-SA-4.0
+#
+# All files installed with setuid or setgid permissions must be listed
+# here with the expected permissions (st_mode), expected owner, and
+# expected group.  Blank lines and lines beginning with '#' are
+# ignored.
+#
+# Example (commented out):
+#-rwsr-xr-x    root    root     /usr/bin/mount
+#
+#<symbolic mode>    <owner>    <group>    <file path>
+-rwsr-sr-x          abrt       abrt       /usr/libexec/abrt-action-install-debuginfo-to-abrt-cache
+-rwsr-x---          root       disk       /usr/lib64/amanda/application/amgtar
+-rwsr-x---          root       disk       /usr/lib64/amanda/application/amstar
+-rwsr-x---          root       disk       /usr/lib64/amanda/calcsize
+-rwsr-x---          root       disk       /usr/lib64/amanda/killpgrp
+-rwsr-x---          root       disk       /usr/lib64/amanda/rundump
+-rwsr-x---          root       disk       /usr/lib64/amanda/runtar
+-rwsr-xr-x          root       root       /usr/bin/at
+-rwsr-xr-x          root       root       /usr/libexec/clevis-luks-udisks2
+-rwsr-x---          root       cockpit-ws /usr/libexec/cockpit-session
+-rwsr-xr-x          root       root       /usr/bin/crontab
+-rwsr-x---          root       dbus       /usr/libexec/dbus-1/dbus-daemon-launch-helper
+-rwsr-xr-x          root       root       /usr/bin/fusermount
+-rwsr-xr-x          root       root       /usr/bin/fusermount3
+-rwsr-xr-x          root       root       /usr/bin/ksu
+-rwxr-sr-x          root       cgred      /usr/bin/cgclassify
+-rwxr-sr-x          root       cgred      /usr/bin/cgexec
+-rwx--s--x          root       utmp       /usr/libexec/utempter/utempter
+-rwx--s--x          root       lock       /usr/sbin/lockdev
+-rwxr-sr-x          root       mailman    /usr/lib/mailman/cgi-bin/admin
+-rwxr-sr-x          root       mailman    /usr/lib/mailman/cgi-bin/admindb
+-rwxr-sr-x          root       mailman    /usr/lib/mailman/cgi-bin/confirm
+-rwxr-sr-x          root       mailman    /usr/lib/mailman/cgi-bin/create
+-rwxr-sr-x          root       mailman    /usr/lib/mailman/cgi-bin/edithtml
+-rwxr-sr-x          root       mailman    /usr/lib/mailman/cgi-bin/listinfo
+-rwxr-sr-x          root       mailman    /usr/lib/mailman/cgi-bin/options
+-rwxr-sr-x          root       mailman    /usr/lib/mailman/cgi-bin/private
+-rwxr-sr-x          root       mailman    /usr/lib/mailman/cgi-bin/rmlist
+-rwxr-sr-x          root       mailman    /usr/lib/mailman/cgi-bin/roster
+-rwxr-sr-x          root       mailman    /usr/lib/mailman/cgi-bin/subscribe
+-rwxr-sr-x          root       mailman    /usr/lib/mailman/mail/mailman
+drwxrws---          apache     mailman    /var/lib/mailman/archives/private
+drwxrwsr-x          root       mailman    /var/lib/mailman
+drwxrwsr-x          root       mailman    /var/lib/mailman/archives
+drwxrwsr-x          root       mailman    /var/lib/mailman/archives/public
+drwxrwsr-x          root       mailman    /var/lib/mailman/data
+drwxrwsr-x          root       mailman    /var/lib/mailman/lists
+drwxrwsr-x          root       mailman    /var/lib/mailman/spam
+-rwx--s--x          root       slocate    /usr/bin/locate
+-rwsr-xr-x          root       root       /usr/sbin/usernetctl
+-rwsr-xr-x          root       root       /sbin/mount.nfs
+-r-xr-sr-x          root       ssh_keys   /usr/libexec/openssh/ssh-keysign
+-rwsr-xr-x          root       root       /usr/sbin/pam_timestamp_check
+-rwsr-xr-x          root       root       /usr/sbin/unix_chkpwd
+-rwsr-xr-x          root       root       /usr/bin/passwd
+-rwsr-xr-x          root       root       /usr/sbin/seunshare
+-rwsr-xr-x          root       root       /usr/bin/pkexec
+-rwsr-xr-x          root       root       /usr/lib/polkit-1/polkit-agent-helper-1
+-rwxr-sr-x          root       postdrop   /usr/sbin/postdrop
+-rwxr-sr-x          root       postdrop   /usr/sbin/postqueue
+-rwxr-sr-x          root       mail       /usr/bin/lockfile
+-rwsr-xr-x          root       root       /usr/libexec/qemu-bridge-helper
+-rwxr-sr-x          root       screen     /usr/bin/screen
+-rwxr-sr-x          root       smmsp      /usr/sbin/sendmail.sendmail
+-rwsr-xr-x          root       root       /usr/bin/chage
+-rwsr-xr-x          root       root       /usr/bin/gpasswd
+-rwsr-xr-x          root       root       /usr/bin/newgrp
+-rwsr-xr-x          root       root       /usr/libexec/spice-gtk-aarch64/spice-client-glib-usb-acl-helper
+-rwsr-xr-x          root       root       /usr/libexec/spice-gtk-i386/spice-client-glib-usb-acl-helper
+-rwsr-xr-x          root       root       /usr/libexec/spice-gtk-ppc64le/spice-client-glib-usb-acl-helper
+-rwsr-xr-x          root       root       /usr/libexec/spice-gtk-s390x/spice-client-glib-usb-acl-helper
+-rwsr-xr-x          root       root       /usr/libexec/spice-gtk-x86_64/spice-client-glib-usb-acl-helper
+---s--x--x          root       root       /usr/bin/sudo
+---s--x---          root       stapusr    /usr/bin/staprun
+-rws--x--x          root       root       /usr/sbin/userhelper
+-rwsr-xr-x          root       root       /usr/bin/mount
+-rwsr-xr-x          root       root       /usr/bin/su
+-rwsr-xr-x          root       root       /usr/bin/umount
+-rwxr-sr-x          root       tty        /usr/bin/write
+-rws--x--x          root       root       /usr/bin/chfn
+-rws--x--x          root       root       /usr/bin/chsh
+drwxrwsr-x          uuidd      uuidd      /run/uuidd
+drwxrwsr-x          uuidd      uuidd      /var/lib/libuuid
+-rwsr-xr-x          root       root       /usr/bin/newuidmap
+-rwsr-xr-x          root       root       /usr/bin/newgidmap
+-rwsr-sr-x          tlog       tlog       /usr/bin/tlog-rec-session
+-rwsr-xr-x          root       root       /usr/sbin/grub2-set-bootflag
+-rwsr-x---          root       sssd       /usr/libexec/sssd/selinux_child
+-rwsr-x---          root       sssd       /usr/libexec/sssd/krb5_child
+-rwsr-x---          root       sssd       /usr/libexec/sssd/ldap_child
+-rwsr-x---          root       sssd       /usr/libexec/sssd/proxy_child

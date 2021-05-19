@@ -1,0 +1,37 @@
+#
+# Fedora rawhide capabilities(7) list
+#
+# SPDX-License-Identifier: CC-BY-SA-4.0
+
+#
+# Lines beginning with '#' and blank lines are ignored.
+#
+# The format of this file is:
+# <package name>    <file path>          <capabilities>
+#
+# Where <capabilities> is a comma-delimited list of capabilities as returned
+# by the cap_to_text(3) function.  Capabilities information can be found in
+# the capabilities(7) man page.
+#
+# Example (commented out):
+#iputils                         /usr/bin/ping                   = cap_net_admin,cap_net_raw+p
+#
+# <package name>    <file path>          <capabilities>
+#
+
+# <package>               <file path>                       <capabilities>
+gnome-keyring             /usr/bin/gnome-keyring-daemon   = cap_ipc_lock+ep
+httpd                     /usr/sbin/suexec                = cap_setgid,cap_setuid+ep
+iputils                   /usr/bin/ping                   = cap_net_admin,cap_net_raw+p
+iputils                   /usr/sbin/arping                = cap_net_raw+p
+iputils                   /usr/sbin/clockdiff             = cap_net_raw+p
+iputils-ninfod            /usr/sbin/ninfod                = cap_net_raw+ep
+mysql-server              /usr/libexec/mysqld             = cap_sys_nice+ep
+policycoreutils-newrole   /usr/bin/newrole                = cap_chown,cap_dac_override,cap_dac_read_search,cap_fowner,cap_setpcap,cap_sys_admin,cap_audit_write+ep
+policycoreutils-sandbox   /usr/sbin/seunshare             = cap_dac_override,cap_fowner,cap_setuid,cap_setpcap,cap_sys_admin,cap_sys_nice+ep
+rsh                       /usr/bin/rcp                    = cap_net_bind_service+ep
+rsh                       /usr/bin/rlogin                 = cap_net_bind_service+ep
+rsh                       /usr/bin/rsh                    = cap_net_bind_service+ep
+wireshark-cli             /usr/bin/dumpcap                = cap_net_admin,cap_net_raw+ep
+shadow-utils              /usr/bin/newuidmap              = cap_setuid+ep
+shadow-utils              /usr/bin/newgidmap              = cap_setgid+ep

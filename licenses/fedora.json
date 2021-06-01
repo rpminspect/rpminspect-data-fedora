@@ -6726,4 +6726,14 @@
      "spdx_name": "MIT No Attribution License",
      "url": "https://spdx.org/licenses/MIT-0.html"
   },
+  "Atkinson Hyperlegible Font License": {
+    "approved": "yes",
+    "fedora_abbrev": "AHFL",
+    "fedora_name": "Atkinson Hyperlegible Font License",
+    "id": "671",
+    "license_text": "",
+    "spdx_abbrev": "",
+    "spdx_name": "",
+    "url": "https://www.brailleinstitute.org/wp-content/uploads/2020/11/Atkinson-Hyperlegible-Font-License-2020-1104.pdf"
+  },
 }

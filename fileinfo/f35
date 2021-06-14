@@ -93,3 +93,5 @@ drwxrwsr-x          uuidd      uuidd      /var/lib/libuuid
 -rwsr-x---          root       sssd       /usr/libexec/sssd/ldap_child
 -rwsr-x---          root       sssd       /usr/libexec/sssd/proxy_child
 -rwsr-xr-x          root       root       /usr/bin/vmware-user-suid-wrapper
+-rwsr-x---          root       mysql      /usr/lib/mariadb/plugin/auth_pam_tool_dir/auth_pam_tool
+-rwsr-x---          root       mysql      /usr/lib64/mariadb/plugin/auth_pam_tool_dir/auth_pam_tool

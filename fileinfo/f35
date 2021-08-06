@@ -95,4 +95,4 @@ drwxrwsr-x          uuidd      uuidd      /var/lib/libuuid
 -rwsr-xr-x          root       root       /usr/bin/vmware-user-suid-wrapper
 -rwsr-x---          root       mysql      /usr/lib/mariadb/plugin/auth_pam_tool_dir/auth_pam_tool
 -rwsr-x---          root       mysql      /usr/lib64/mariadb/plugin/auth_pam_tool_dir/auth_pam_tool
--rwxrws---          root       ts-shell   /var/log/ts-shell
+drwxrws---          root       ts-shell   /var/log/ts-shell

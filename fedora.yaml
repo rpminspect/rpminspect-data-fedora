@@ -505,6 +505,7 @@ javabytecode:
     - fc33: 55
     - fc34: 55
     - fc35: 55
+    - fc36: 55  
     - default: 43
 
     # Optional list of glob(7) specifications to match files to ignore

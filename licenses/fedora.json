@@ -5159,6 +5159,13 @@
     "spdx_name": "",
     "url": "https://fedoraproject.org/wiki/Licensing/TCGL"
   },
+  "TTYP0 License" {
+    "approved": "yes",
+    "fedora_abbrev": "MIT",
+    "fedora_name": "TTYP0 MIT variant",
+    "id": "672",
+    "url": "https://fedoraproject.org/wiki/Licensing:MIT#ttyp0_variant"
+  }
   "UCAR License": {
     "approved": "yes",
     "fedora_abbrev": "UCAR",

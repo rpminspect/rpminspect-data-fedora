@@ -56,7 +56,11 @@ Use the upstream release repo for these steps:
 
 [ ] make srpm
 
-[ ] Go to https://github.com/rpminspect/rpminspect-data-fedora and draft a new release for this release.  Title it "rpminspect-data-fedora-X.Y" and paste the contents of ~/newchanges in the description box.  Attach these files to the release from this directory:
+[ ] Go to https://github.com/rpminspect/rpminspect-data-fedora and
+    draft a new release for this release.  Title it
+    "rpminspect-data-fedora-X.Y" and paste the contents of
+    ~/newchanges in the description box.  Attach these files to the
+    release from this directory:
 
         rpminspect-data-fedora-X.Y.tar.xz
         rpminspect-data-fedora-X.Y.tar.xz.asc

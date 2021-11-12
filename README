@@ -48,10 +48,6 @@ Use the upstream release repo for these steps:
 
 [ ] make announce > ~/newchanges
 
-[ ] git push
-
-[ ] make clean
-
 [ ] make release
 
 [ ] make srpm

@@ -6,14 +6,17 @@ Summary:        Build deviation compliance tool data files
 Group:          Development/Tools
 License:        CC-BY-SA
 URL:            https://github.com/rpminspect/rpminspect-data-fedora
-Source0:        https://github.com/rpminspect/rpminspect-data-fedora/releases/download/v%%VERSION%%/%%TARBALL%%
-Source1:        changelog
+Source0:        https://github.com/rpminspect/rpminspect/releases/download/v%{version}/%{name}-%{version}.tar.xz
+Source1:        https://github.com/rpminspect/rpminspect/releases/download/v%{version}/%{name}-%{version}.tar.xz.asc
+Source2:        %%GPGKEYRING%%
 
 BuildArch:      noarch
 
 BuildRequires:  meson
+BuildRequires:  ninja-build
+BuildRequires:  gnupg2
 
-Requires:       rpminspect >= 1.3
+Requires:       rpminspect >= 1.7
 
 # Used by inspections enabled in the configuration file
 Requires:       xhtml1-dtds
@@ -34,7 +37,8 @@ used by the inspections provided by librpminspect.
 
 
 %prep
-%setup -q
+%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
+%autosetup
 
 
 %build
@@ -54,4 +58,3 @@ used by the inspections provided by librpminspect.
 
 
 %changelog
-%include %{SOURCE1}

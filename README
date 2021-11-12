@@ -78,7 +78,7 @@ Use the upstream release repo for these steps:
         git clean -dxf
         git pull
         fedpkg update --type enhancement --request testing \
-                      --notes "Upgrade to rpminspect-data-centos-X.Y" \
+                      --notes "Upgrade to rpminspect-data-fedora-X.Y" \
                       --no-require-bugs --no-require-testcases
 
     The type can be 'bugfix', 'security', 'enhancement', or

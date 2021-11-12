@@ -1,5 +1,5 @@
 project('rpminspect-data-fedora',
-        version : '1.6',
+        version : '1.7',
         license : 'CC-BY-SA-4.0',
         meson_version : '>=0.47.0')
 

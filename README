@@ -32,49 +32,65 @@ packages users may want installed.
 RELEASING (notes for the package maintainer, not ordinary users)
 ----------------------------------------------------------------
 
-Make sure everything builds cleanly.  Then start from a clean tree:
+Use the upstream release repo for these steps:
 
-    git clean -d -x -f
+[ ] Ensure all required PRs are merged.
 
-If you have not bumped the version number for the development release,
-then do:
+[ ] git clean -dxf
 
-    make new-release
+[ ] git pull
 
-If you have already bumped the version number, then do:
+[ ] make
 
-    make release
+[ ] make check
 
-You can compare the latest tag to the version number in meson.build to
-see if you bumped it or not if you have forgotten.  For example:
+[ ] make clean
 
-    LATEST_VER="$(grep " version : " meson.build | cut -d "'" -f 2)"
-    LATEST_TAG="$(git tag -l | cut -c2- | sort -n | tail -n 1)"
+[ ] make announce > ~/newchanges
 
-That's complicated, so I made it easier for you:
+[ ] git push
 
-    make did-i-bumpver
+[ ] make clean
 
-If those two strings match, you did not bump the version number during
-development so run 'make new-release'.  'make did-i-bumpver' will
-report its findings too.
+[ ] make release
 
-Now run:
+[ ] make srpm
 
-    make srpm
+[ ] Go to https://github.com/rpminspect/rpminspect-data-fedora and draft a new release for this release.  Title it "rpminspect-data-fedora-X.Y" and paste the contents of ~/newchanges in the description box.  Attach these files to the release from this directory:
 
-Then go to GitHub and create a new release entry.  Paste the contents
-of the 'changelog' file minus the first line for the description of
-the release.  Bind the release to the tag you just made and call it
-rpminspect-data-fedora-VERSION.  Attached the tarball and detached asc
-signature from the build/meson-dist/ subdirectory.
+        rpminspect-data-fedora-X.Y.tar.xz
+        rpminspect-data-fedora-X.Y.tar.xz.asc
 
-Lastly, do the builds in koji.  You can build for a subset of branches
-by using the BRANCHES environment variable:
+[ ] make koji
 
-    env BRANCHES="f33 epel7" make koji
+    NOTE: You may want to try each branch individually using the
+    syntax described in the 'make help' output.  By default this
+    target will submit Koji builds for all Fedora and EPEL branches in
+    the rpminspect-data-centos dist-git repo that have active build
+    targets.
 
-By default, 'make koji' will built for all branches present in the
-project that have koji build targets.
+[ ] Wait for the builds to finish.  You will receive email
+    notifications or you can watch the progress in the Koji task URL.
+    For each branch that completes (except rawhide), submit an update
+    request for that build:
 
-Ensure you have a Fedora Kerberos ticket before doing this.
+        fedpkg switch-branch BRANCH
+        git clean -dxf
+        git pull
+        fedpkg update --type enhancement --request testing \
+                      --notes "Upgrade to rpminspect-data-centos-X.Y" \
+                      --no-require-bugs --no-require-testcases
+
+    The type can be 'bugfix', 'security', 'enhancement', or
+    'newpackage'.  Generally rpminspect will be enhancement unless the
+    release only contains bug fixes (which would be typos).
+
+[ ] In the master branch, increment the version number of the project
+    in meson.build and push that.  This way the new Copr builds will
+    carry a newer version number that represents the next release.
+
+[ ] git push
+
+The release is now done.  Use the text from ~/newchanges in a blog
+post about the release.  It may be a good idea to go do releases of
+the data packages now and do a combined blog post about all of them.

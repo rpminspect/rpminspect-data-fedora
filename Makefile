@@ -32,6 +32,10 @@ new-release:
 release:
 	$(topdir)/utils/release.sh -t -p
 
+announce:
+	@git log --reverse --pretty=format:%s "$(shell git tag -l | tail -n 1)"..HEAD 2>/dev/null | sed -e 's|^|* |g'
+	@echo
+
 koji: srpm
 	@if [ ! -f $(RELEASED_TARBALL) ]; then \
 		echo "*** Missing $(RELEASED_TARBALL), be sure to have run 'make release'" >&2 ; \

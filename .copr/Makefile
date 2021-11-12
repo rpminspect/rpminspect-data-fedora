@@ -1,4 +1,4 @@
-# Copyright (C) 2019 David Cantrell <david.l.cantrell@gmail.com>
+# Copyright (C) 2019 David Cantrell <dcantrell@redhat.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,42 +24,49 @@ SPEC := $(topdir)/$(shell basename $(SPEC_TEMPLATE) .in)
 
 # Replace placeholders in the spec file template
 RPMDATE = $(shell date +'%a %b %d %Y')
+RPMAUTHOR = $(shell git log | tac | grep ^Author: | head -n 1 | cut -d ' ' -f 2,3,4)
 
 # Various things we need to generate a tarball
 PKG := $(shell grep ^Name: "$(SPEC_TEMPLATE)" | awk '{ print $$2; }')
 VER := $(shell grep 'version :' $(topdir)/meson.build | grep -E "'[0-9]+\.[0-9]+'" | cut -d "'" -f 2)
 
 ifeq ($(BUILDTYPE),copr)
-GITDATE = $(shell date +'%Y%m%d%H%M')
-GITHASH = $(shell git rev-parse --short HEAD)
+GITDATE          = $(shell date +'%Y%m%d%H%M')
+GITHASH          = $(shell git rev-parse --short HEAD)
 TARBALL_BASENAME = $(PKG)-$(VER)-$(GITDATE)git$(GITHASH)
+TAG              = HEAD
+else
+TAG              = $(shell git tag -l | tail -n 1)
 endif
 
 ifeq ($(BUILDTYPE),release)
 TARBALL_BASENAME = $(PKG)-$(VER)
 endif
 
-ifeq ($(BUILDTYPE),release)
-CHANGELOG_CMD = $(topdir)/utils/mkrpmchangelog.sh
-else
-CHANGELOG_CMD = $(topdir)/utils/mkrpmchangelog.sh --copr
-endif
-
 srpm:
 	$(topdir)/.copr/instpkgs.sh $(SPEC_TEMPLATE)
 	sed -e 's|%%VERSION%%|$(VER)|g' < "$(SPEC_TEMPLATE)" > "$(SPEC)"
-	sed -i -e 's|%%RPMDATE%%|$(RPMDATE)|g' "$(SPEC)"
-	sed -i -e 's|%%TARBALL%%|$(TARBALL_BASENAME).tar.xz|g' "$(SPEC)"
-	sed -i -e 's|^%setup.*$$|%setup -q -n $(TARBALL_BASENAME)|g' "$(SPEC)"
+	sed -i -e 's|%%GPGKEYRING%%|gpgkey-$(GPGKEY).gpg|g' "$(SPEC)"
 ifeq ($(BUILDTYPE),copr)
 	sed -i -e '/^Release:/ s/1[^%]*/0.1.$(GITDATE)git$(GITHASH)/' "$(SPEC)"
+	sed -i -e 's|^Source0:.*$$|Source0: $(TARBALL_BASENAME).tar.xz|g' "$(SPEC)"
+	sed -i -e 's|^%autosetup.*$$|%autosetup -n $(TARBALL_BASENAME)|g' "$(SPEC)"
+	sed -i -e '/^Source1:.*$$/d' "$(SPEC)"
+	sed -i -e '/^Source2:.*$$/d' "$(SPEC)"
+	sed -i -e '/^%{gpgverify}.*$$/d' "$(SPEC)"
+	echo "* $(RPMDATE) $(RPMAUTHOR) - $(VER)-$(GITDATE)git$(GITHASH)" >> "$(SPEC)"
+	echo "- Build rpminspect-data-fedora-$(VER)-$(GITDATE)git$(GITHASH) snapshot" >> "$(SPEC)"
 endif
+	rm -f "$(TARBALL_BASENAME)".tar.xz.asc
 	git archive \
 		--format=tar \
 		--output='$(topdir)/$(TARBALL_BASENAME).tar' \
-		--prefix='$(TARBALL_BASENAME)/' HEAD $(topdir)
+		--prefix='$(TARBALL_BASENAME)/' $(TAG) $(topdir)
 	xz -9f $(topdir)/$(TARBALL_BASENAME).tar
-	cd $(topdir) ; $(CHANGELOG_CMD) > changelog
+ifeq ($(BUILDTYPE),release)
+	gpg --detach-sign --armor "$(TARBALL_BASENAME)".tar.xz
+	gpg --export -a $(GPGKEY) > gpgkey-$(GPGKEY).gpg
+endif
 	rpmbuild \
 		-bs --nodeps \
 		--define "_sourcedir $(topdir)" \

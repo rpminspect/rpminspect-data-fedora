@@ -92,3 +92,5 @@ drwxrwsr-x          uuidd      uuidd      /var/lib/libuuid
 -rwsr-x---          root       sssd       /usr/libexec/sssd/krb5_child
 -rwsr-x---          root       sssd       /usr/libexec/sssd/ldap_child
 -rwsr-x---          root       sssd       /usr/libexec/sssd/proxy_child
+drwxrwxrwt          root       root       /tmp
+drwxrwxrwt          root       root       /var/tmp

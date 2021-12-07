@@ -66,7 +66,7 @@ Use the upstream release repo for these steps:
     NOTE: You may want to try each branch individually using the
     syntax described in the 'make help' output.  By default this
     target will submit Koji builds for all Fedora and EPEL branches in
-    the rpminspect-data-centos dist-git repo that have active build
+    the rpminspect-data-fedora dist-git repo that have active build
     targets.
 
 [ ] Wait for the builds to finish.  You will receive email

@@ -32,15 +32,23 @@ install_subdir(
     'rebaseable',
     install_dir : get_option('datadir') + '/rpminspect'
 )
-
-# Install the configuration file
-install_data(
-    sources : 'fedora.yaml',
+install_subdir(
+    'icons',
+    install_dir : get_option('datadir') + '/rpminspect'
+)
+install_subdir(
+    'security',
     install_dir : get_option('datadir') + '/rpminspect'
 )
 
 install_subdir(
     'profiles',
+    install_dir : get_option('datadir') + '/rpminspect'
+)
+
+# Install the configuration file
+install_data(
+    sources : 'fedora.yaml',
     install_dir : get_option('datadir') + '/rpminspect'
 )
 

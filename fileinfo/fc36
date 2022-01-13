@@ -11,7 +11,7 @@
 #-rwsr-xr-x    root    root     /usr/bin/mount
 #
 #<symbolic mode>    <owner>    <group>    <file path>
--rwsr-sr-x          abrt       abrt       /usr/libexec/abrt-action-install-debuginfo-to-abrt-cache
+-rwxr-sr-x          abrt       abrt       /usr/libexec/abrt-action-install-debuginfo-to-abrt-cache
 -rwsr-x---          root       disk       /usr/lib64/amanda/application/amgtar
 -rwsr-x---          root       disk       /usr/lib64/amanda/application/amstar
 -rwsr-x---          root       disk       /usr/lib64/amanda/calcsize

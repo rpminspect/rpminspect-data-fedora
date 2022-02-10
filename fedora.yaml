@@ -558,6 +558,7 @@ pathmigration:
     # pathmigration rules.
     excluded_paths:
         - /lib/modules
+        - /lib/firmware
 
     # Optional list of glob(7) specifications to match files to ignore
     # for this inspection.  The format of this list is the same as the

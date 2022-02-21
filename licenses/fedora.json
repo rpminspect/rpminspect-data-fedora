@@ -235,8 +235,8 @@
     "fedora_name": "Affero General Public License 3.0 or later",
     "id": "19",
     "license_text": "",
-    "spdx_abbrev": "",
-    "spdx_name": "",
+    "spdx_abbrev": "AGPL-3.0-or-later",
+    "spdx_name": "GNU Affero General Public License v3.0 or later",
     "url": "http://www.fsf.org/licensing/licenses/agpl-3.0.html"
   },
   "Affero General Public License 3.0 with Zarafa trademark exceptions": {
@@ -2145,7 +2145,7 @@
     "fedora_name": "GNU General Public License v1.0 only",
     "id": "222",
     "license_text": "",
-    "spdx_abbrev": "GPL-1.0",
+    "spdx_abbrev": "GPL-1.0-only",
     "spdx_name": "GNU General Public License v1.0 only",
     "url": "http://www.gnu.org/licenses/old-licenses/gpl-1.0-standalone.html"
   },
@@ -2155,7 +2155,7 @@
     "fedora_name": "GNU General Public License v1.0 or later",
     "id": "223",
     "license_text": "",
-    "spdx_abbrev": "GPL-1.0+",
+    "spdx_abbrev": "GPL-1.0-or-later",
     "spdx_name": "GNU General Public License v1.0 or later",
     "url": "http://www.gnu.org/licenses/old-licenses/gpl-1.0-standalone.html"
   },
@@ -2165,7 +2165,7 @@
     "fedora_name": "GNU General Public License v2.0 only",
     "id": "224",
     "license_text": "",
-    "spdx_abbrev": "GPL-2.0",
+    "spdx_abbrev": "GPL-2.0-only",
     "spdx_name": "GNU General Public License v2.0 only",
     "url": "http://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html"
   },
@@ -2195,7 +2195,7 @@
     "fedora_name": "GNU General Public License v2.0 or later",
     "id": "227",
     "license_text": "",
-    "spdx_abbrev": "GPL-2.0+",
+    "spdx_abbrev": "GPL-2.0-or-later",
     "spdx_name": "GNU General Public License v2.0 or later",
     "url": "https://spdx.org/licenses/GPL-2.0+.html"
   },
@@ -2275,7 +2275,7 @@
     "fedora_name": "GNU General Public License v3.0 only",
     "id": "230",
     "license_text": "",
-    "spdx_abbrev": "GPL-3.0",
+    "spdx_abbrev": "GPL-3.0-only",
     "spdx_name": "GNU General Public License v3.0 only",
     "url": "http://www.gnu.org/licenses/gpl-3.0-standalone.html"
   },
@@ -2305,7 +2305,7 @@
     "fedora_name": "GNU General Public License v3.0 or later",
     "id": "233",
     "license_text": "",
-    "spdx_abbrev": "GPL-3.0+",
+    "spdx_abbrev": "GPL-3.0-or-later",
     "spdx_name": "GNU General Public License v3.0 or later",
     "url": "https://www.gnu.org/licenses/gpl.html"
   },
@@ -2385,8 +2385,8 @@
     "fedora_name": "GNU Lesser General Public License v2 (or 2.1) or later",
     "id": "240",
     "license_text": "",
-    "spdx_abbrev": "",
-    "spdx_name": "",
+    "spdx_abbrev": "LGPL-2.0-or-later",
+    "spdx_name": "GNU Lesser General Public License v2.1 or later",
     "url": "http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html"
   },
   "GNU Lesser General Public License v2 (or 2.1) or later, with exceptions": {
@@ -2415,7 +2415,7 @@
     "fedora_name": "",
     "id": "238",
     "license_text": "",
-    "spdx_abbrev": "LGPL-2.1",
+    "spdx_abbrev": "LGPL-2.1-only",
     "spdx_name": "GNU Lesser General Public License v2.1 only",
     "url": "http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html"
   },
@@ -2425,7 +2425,7 @@
     "fedora_name": "",
     "id": "570",
     "license_text": "",
-    "spdx_abbrev": "LGPL-2.1+",
+    "spdx_abbrev": "LGPL-2.1-or-later",
     "spdx_name": "GNU Lesser General Public License v2.1 or later",
     "url": "http://www.gnu.org/licenses/old-licenses/lgpl-2.1-standalone.html"
   },
@@ -2435,7 +2435,7 @@
     "fedora_name": "GNU Lesser General Public License v3.0 only",
     "id": "243",
     "license_text": "",
-    "spdx_abbrev": "LGPL-3.0",
+    "spdx_abbrev": "LGPL-3.0-only",
     "spdx_name": "GNU Lesser General Public License v3.0 only",
     "url": "http://www.gnu.org/licenses/lgpl-3.0-standalone.html"
   },
@@ -2455,7 +2455,7 @@
     "fedora_name": "GNU Lesser General Public License v3.0 or later",
     "id": "245",
     "license_text": "",
-    "spdx_abbrev": "LGPL-3.0+",
+    "spdx_abbrev": "LGPL-3.0-or-later",
     "spdx_name": "GNU Lesser General Public License v3.0 or later",
     "url": "https://spdx.org/licenses/LGPL-3.0+.html"
   },
@@ -2495,7 +2495,7 @@
     "fedora_name": "",
     "id": "249",
     "license_text": "",
-    "spdx_abbrev": "LGPL-2.0",
+    "spdx_abbrev": "LGPL-2.0-only",
     "spdx_name": "GNU Library General Public License v2 only",
     "url": "http://www.gnu.org/licenses/old-licenses/lgpl-2.0-standalone.html"
   },
@@ -2505,7 +2505,7 @@
     "fedora_name": "",
     "id": "571",
     "license_text": "",
-    "spdx_abbrev": "LGPL-2.0+",
+    "spdx_abbrev": "LGPL-2.0-or-later",
     "spdx_name": "GNU Library General Public License v2 or later",
     "url": "https://spdx.org/licenses/LGPL-2.0+.html"
   },
@@ -2940,9 +2940,9 @@
     "url": "http://www.latex-project.org/lppl/lppl-1-3a.txt"
   },
   "LaTeX Project Public License v1.0": {
-    "approved": "unknown",
-    "fedora_abbrev": "",
-    "fedora_name": "",
+    "approved": "yes",
+    "fedora_abbrev": "LPPL 1.0",
+    "fedora_name": "LaTeX Project Public License v1.0",
     "id": "291",
     "license_text": "",
     "spdx_abbrev": "LPPL-1.0",
@@ -2960,9 +2960,9 @@
     "url": "http://www.latex-project.org/lppl/lppl-1-1.txt"
   },
   "LaTeX Project Public License v1.2": {
-    "approved": "unknown",
-    "fedora_abbrev": "",
-    "fedora_name": "",
+    "approved": "yes",
+    "fedora_abbrev": "LPPL 1.2",
+    "fedora_name": "LaTeX Project Public License v1.2",
     "id": "293",
     "license_text": "",
     "spdx_abbrev": "LPPL-1.2",
@@ -2980,9 +2980,9 @@
     "url": "http://www.latex-project.org/lppl/lppl-1-3a.txt"
   },
   "LaTeX Project Public License v1.3c": {
-    "approved": "unknown",
-    "fedora_abbrev": "",
-    "fedora_name": "",
+    "approved": "yes",
+    "fedora_abbrev": "LPPL 1.3c",
+    "fedora_name": "LaTeX Project Public License v1.3c",
     "id": "295",
     "license_text": "",
     "spdx_abbrev": "LPPL-1.3c",
@@ -4149,10 +4149,10 @@
     "spdx_name": "",
     "url": "http://dev.perl.org/licenses/"
   },
-  "Perl License (variant)": {
+  "Perl License (variant w/ GPLv2)": {
     "approved": "yes",
     "fedora_abbrev": "GPLv2 or Artistic",
-    "fedora_name": "Perl License (variant)",
+    "fedora_name": "Perl License (variant w/ GPLv2)",
     "id": "419",
     "license_text": "",
     "spdx_abbrev": "",
@@ -6519,7 +6519,7 @@
   "Perl License (variant w/ GPLv2+)": {
     "approved": "yes",
     "fedora_abbrev": "GPLv2+ or Artistic",
-    "fedora_name": "Perl License (variant)",
+    "fedora_name": "Perl License (variant w/ GPLv2+)",
     "id": "656",
     "license_text": "",
     "spdx_abbrev": "#No official SPDX support as of 2020-04-21",
@@ -6529,7 +6529,7 @@
   "Perl License (variant w/ LGPLv2+)": {
     "approved": "yes",
     "fedora_abbrev": "LGPLv2+ or Artistic",
-    "fedora_name": "Perl License (variant)",
+    "fedora_name": "Perl License (variant w/ LGPLv2+)",
     "id": "657",
     "license_text": "",
     "spdx_abbrev": "#No official SPDX support as of 2020-04-21",

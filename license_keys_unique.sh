@@ -34,4 +34,6 @@ for licdb in ${DBFILES} ; do
     fi
 done
 
+cat ${DBFILES} | json_verify || exit 1
+
 exit ${RET}

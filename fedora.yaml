@@ -521,7 +521,7 @@ annocheck:
     # These job entries may be listed here or under a block named
     # 'jobs:' if you prefer.
     jobs:
-    - hardened: --ignore-unknown --verbose
+        - hardened: --ignore-unknown --verbose
 
     # Optional list of glob(7) specifications to match files to ignore
     # for this inspection.  The format of this list is the same as the

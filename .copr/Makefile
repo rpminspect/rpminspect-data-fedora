@@ -1,4 +1,4 @@
-# Copyright (C) 2019 David Cantrell <dcantrell@redhat.com>
+# Copyright (C) 2019 David Cantrell <david.l.cantrell@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -67,7 +67,7 @@ ifeq ($(BUILDTYPE),copr)
 	sed -i -e '/^Source2:.*$$/d' "$(SPEC)"
 	sed -i -e '/^%{gpgverify}.*$$/d' "$(SPEC)"
 	echo "* $(RPMDATE) $(RPMAUTHOR) - $(VER)-$(GITDATE)git$(GITHASH)" >> "$(SPEC)"
-	echo "- Build rpminspect-data-fedora-$(VER)-$(GITDATE)git$(GITHASH) snapshot" >> "$(SPEC)"
+	echo "- Build $(PKG)-$(VER)-$(GITDATE)git$(GITHASH) snapshot" >> "$(SPEC)"
 endif
 	rm -f "$(TARBALL_BASENAME)".tar.xz.asc
 	git archive \

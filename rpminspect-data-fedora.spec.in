@@ -27,8 +27,8 @@ Requires:       zsh
 Requires:       tcsh
 Requires:       rc
 Requires:       bash
-Requires:       annobin-annocheck
 Requires:       libabigail
+Requires:       /usr/bin/annocheck
 
 
 %description

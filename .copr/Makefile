@@ -19,16 +19,16 @@ topdir := $(shell realpath $(dir $(lastword $(MAKEFILE_LIST)))/..)
 BUILDTYPE ?= copr
 
 # Spec file and template
-SPEC_TEMPLATE := $(shell ls -1 $(topdir)/*.spec.in)
-SPEC := $(topdir)/$(shell basename $(SPEC_TEMPLATE) .in)
+SPEC_TEMPLATE = $(shell ls -1 $(topdir)/*.spec.in)
+SPEC = $(topdir)/$(shell basename $(SPEC_TEMPLATE) .in)
 
 # Replace placeholders in the spec file template
 RPMDATE = $(shell date +'%a %b %d %Y')
 RPMAUTHOR = $(shell git log | tac | grep ^Author: | head -n 1 | cut -d ' ' -f 2,3,4)
 
 # Various things we need to generate a tarball
-PKG := $(shell grep ^Name: "$(SPEC_TEMPLATE)" | awk '{ print $$2; }')
-VER := $(shell grep 'version :' $(topdir)/meson.build | grep -E "'[0-9]+\.[0-9]+'" | cut -d "'" -f 2)
+PKG = $(shell grep ^Name: "$(SPEC_TEMPLATE)" | awk '{ print $$2; }')
+VER = $(shell grep 'version :' $(topdir)/meson.build | grep -E "'[0-9]+\.[0-9]+'" | cut -d "'" -f 2)
 
 ifeq ($(BUILDTYPE),copr)
 GITDATE          = $(shell date +'%Y%m%d%H%M')

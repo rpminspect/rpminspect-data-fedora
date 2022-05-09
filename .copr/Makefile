@@ -13,6 +13,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+# Set the top level source directory
+topdir := $(shell realpath $(dir $(lastword $(MAKEFILE_LIST)))/..)
+
 # Figure out if we need to run dnf or yum
 _HAVE_DNF := $(shell ls -1 /usr/bin/dnf 2>/dev/null)
 ifeq ($(_HAVE_DNF),)
@@ -23,9 +26,7 @@ endif
 
 # Install packages before anything else
 _install := $(shell $(PKG_CMD) install -y git)
-
-# Set the top level source directory
-topdir := $(shell realpath $(dir $(lastword $(MAKEFILE_LIST)))/..)
+_safedir := $(shell git config --global --add safe.directory $(topdir))
 
 # Pass BUILDTYPE=release to generate a release SRPM
 BUILDTYPE ?= copr
@@ -69,7 +70,6 @@ ifeq ($(BUILDTYPE),copr)
 	echo "- Build rpminspect-data-fedora-$(VER)-$(GITDATE)git$(GITHASH) snapshot" >> "$(SPEC)"
 endif
 	rm -f "$(TARBALL_BASENAME)".tar.xz.asc
-	git config --global --add safe.directory $(topdir)
 	git archive \
 		--format=tar \
 		--output='$(topdir)/$(TARBALL_BASENAME).tar' \

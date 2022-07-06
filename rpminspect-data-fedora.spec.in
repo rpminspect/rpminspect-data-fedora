@@ -19,6 +19,7 @@ BuildRequires:  gnupg2
 Requires:       rpminspect >= 1.7
 
 # Used by inspections enabled in the configuration file
+Requires:       fedora-license-data
 Requires:       xhtml1-dtds
 Requires:       html401-dtds
 Requires:       dash

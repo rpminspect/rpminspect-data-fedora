@@ -71,7 +71,8 @@ vendor:
     # subdirectory in the vendor_data_dir or a full path to a license
     # database file to use.  This file is used by the 'license'
     # inspection.
-    licensedb: /usr/share/fedora-license-data/licenses/fedora-licenses.json
+    licensedb:
+        - /usr/share/fedora-license-data/licenses/fedora-licenses.json
 
     # Which product release string to favor.  By default, rpminspect
     # favors the newest product release string.  You can change this

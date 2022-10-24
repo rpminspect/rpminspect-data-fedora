@@ -137,12 +137,7 @@ vendor:
     #modularity: off
     #movedfiles: off
     #ownership: off
-
-    # Fedora frequently changes and there is no API guarantee, though
-    # some packages want to enable this inspection on an individual
-    # basis
-    patches: off
-
+    #patches: off
     #pathmigration: off
     #permissions: off
     #politics: off
@@ -701,23 +696,21 @@ kmidiff:
     #    - /usr/lib*/libexample.so*
 
 patches:
+    # List of spec file macros that handle automatic patching.  If one
+    # of these is found, rpminspect will not report defined patches
+    # missing corresponding %patch macros.  NOTE: Do not list the
+    # macros here with '%' prefixes or braces ('{' or '}').  Just list
+    # their names.
+    automacros:
+        - autopatch
+        - autosetup
+        - forgeautosetup
+
     # List of patch files to ignore in the 'patches' inspection.
     # These should match the name as specified on a PatchN: line in
     # the spec file.
     #ignore_list:
     #    - example.patch
-
-    # Reporting threshold for number of files that a patch modifies.
-    # If a patch modifies more than this number of files, the
-    # reporting message will mention it explicitly.  The default is
-    # 20 files.
-    file_count_threshold: 20
-
-    # Reporting theshold for number of lines that a patch modifies.
-    # If a patch modifies more than this number of lines, the
-    # reporting message will mention it explicitly.  The default is
-    # 5000 lines.
-    line_count_threshold: 5000
 
 badfuncs:
     # Shared function names prohibited from executables and libraries.

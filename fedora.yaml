@@ -92,7 +92,7 @@ vendor:
     # files to use from the vendor_data_dir.
     #favor_release: newest
 
-#inspections:
+inspections:
     # By default all inspections are enabled.  You can enable and
     # disable inspections using the command line -T and -E options, or
     # you can add them to this section in the config file.  The format

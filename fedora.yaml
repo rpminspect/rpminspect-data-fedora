@@ -172,11 +172,22 @@ inspections:
     # .fc31laptop".  You want to use "fc31" for all of these, so you
     # can add a rule here that looks like:
     #
-    #     - fc31: ^\.fc31.*$
+    #     - fc31: ^.*\.fc31.*$
     #
     # And rpminspect will match the longer ones to fc31.  By default
     # there is no product release regexp mapping enabled.
-    #- fc31: ^\.fc31.*$
+    - fc28: ^.*\.fc28.*$
+    - fc29: ^.*\.fc29.*$
+    - fc30: ^.*\.fc30.*$
+    - fc31: ^.*\.fc31.*$
+    - fc32: ^.*\.fc32.*$
+    - fc33: ^.*\.fc33.*$
+    - fc34: ^.*\.fc34.*$
+    - fc35: ^.*\.fc35.*$
+    - fc36: ^.*\.fc36.*$
+    - fc37: ^.*\.fc37.*$
+    - fc38: ^.*\.fc38.*$
+    - fc39: ^.*\.fc39.*$
 
 macrofiles:
     # Paths to all RPM macro definitions that rpminspect should use.
@@ -554,6 +565,8 @@ javabytecode:
     - fc35: 55
     - fc36: 55
     - fc37: 55
+    - fc38: 55
+    - fc39: 55
     - default: 43
 
     # Optional list of glob(7) specifications to match files to ignore

@@ -52,3 +52,7 @@
 #
 
 #<path>           <package>   <version>   <release>   <rules>
+
+# glibc localedata template files and test files
+glibc-*/localedata/cmn_TW.UTF-8.in          glibc       *       *       unicode=SKIP
+glibc-*/libio/tst-widetext.input            glibc       *       *       unicode=SKIP

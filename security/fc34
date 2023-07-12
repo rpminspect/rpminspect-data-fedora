@@ -38,3 +38,7 @@
 #     FAIL           The finding is reported at the BAD level, which does
 #                    trigger a failing exit code.
 #
+
+# glibc localedata template files and test files
+glibc-*/localedata/cmn_TW.UTF-8.in          glibc       *       *       unicode=SKIP
+glibc-*/libio/tst-widetext.input            glibc       *       *       unicode=SKIP

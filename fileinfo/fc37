@@ -96,5 +96,6 @@ drwxrwsr-x          uuidd      uuidd      /var/lib/libuuid
 drwxrws---          root       ts-shell   /var/log/ts-shell
 drwxrwxrwt          root       root       /tmp
 drwxrwxrwt          root       root       /var/tmp
+drwxrwxrwt          root       root       /var/tmp/tmt
 -rwsr-sr-x          root       mail       /usr/bin/lockmail
 -rwsr-sr-x          root       mail       /usr/bin/maildrop

@@ -53,6 +53,17 @@
 
 #<path>           <package>   <version>   <release>   <rules>
 
+# dotnet
+# Ignore test data containing unicode codepoints
+dotnet-*/src/runtime/src/libraries/System.Globalization.Extensions/tests/IdnMapping/Data/Unicode_1?_0/IdnaTest_1?.txt dotnet*.0 * * unicode=INFORM
+# Fixed in of .NET 7 and later with https://github.com/dotnet/aspnetcore/pull/38900
+dotnet-v6.*/src/aspnetcore/src/Http/Http/src/Features/FormOptions.cs dotnet6.0 * * unicode=INFORM
+dotnet-v6.*/src/aspnetcore/src/Http/WebUtilities/src/FormReader.cs dotnet6.0 * * unicode=INFORM
+dotnet-v6.*/src/aspnetcore/src/Http/WebUtilities/src/MultipartReader.cs dotnet6.0 * * unicode=INFORM
+# Ignore API-headers (reference assembly) in .NET 7 from older versions of .NET
+dotnet-v7.*/src/source-build-reference-packages/src/targetPacks/ILsrc/microsoft.aspnetcore.app.ref/6.0.0/ref/net6.0/Microsoft.AspNetCore.Http.xml dotnet7.0 * * unicode=INFORM
+dotnet-v7.*/src/source-build-reference-packages/src/targetPacks/ILsrc/microsoft.aspnetcore.app.ref/6.0.0/ref/net6.0/Microsoft.AspNetCore.WebUtilities.xml dotnet7.0 * * unicode=INFORM
+
 # glibc localedata template files and test files
 glibc-*/localedata/cmn_TW.UTF-8.in          glibc       *       *       unicode=SKIP
 glibc-*/libio/tst-widetext.input            glibc       *       *       unicode=SKIP

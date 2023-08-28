@@ -188,6 +188,7 @@ products:
     - fc37: ^.*\.fc37.*$
     - fc38: ^.*\.fc38.*$
     - fc39: ^.*\.fc39.*$
+    - fc40: ^.*\.fc40.*$
 
 macrofiles:
     # Paths to all RPM macro definitions that rpminspect should use.
@@ -567,6 +568,7 @@ javabytecode:
     - fc37: 55
     - fc38: 55
     - fc39: 55
+    - fc40: 55
     - default: 43
 
     # Optional list of glob(7) specifications to match files to ignore

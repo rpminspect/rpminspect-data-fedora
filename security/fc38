@@ -67,3 +67,6 @@ dotnet-v7.*/src/source-build-reference-packages/src/targetPacks/ILsrc/microsoft.
 # glibc localedata template files and test files
 glibc-*/localedata/cmn_TW.UTF-8.in          glibc       *       *       unicode=SKIP
 glibc-*/libio/tst-widetext.input            glibc       *       *       unicode=SKIP
+
+# perl-Prima documentation contains RTL control characters on purpose
+Prima-*/Prima/Drawable/Glyphs.pm            perl-Prima  *       *       unicode=INFORM

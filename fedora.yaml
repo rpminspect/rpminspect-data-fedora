@@ -189,7 +189,9 @@ products:
     - fc38: ^.*\.fc38.*$
     - fc39: ^.*\.fc39.*$
     - fc40: ^.*\.fc40.*$
+    - el7: ^.*\.el7.*$
     - el8: ^.*\.el8.*$
+    - el9: ^.*\.el9.*$
 
 macrofiles:
     # Paths to all RPM macro definitions that rpminspect should use.

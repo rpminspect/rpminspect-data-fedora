@@ -1,5 +1,5 @@
 project('rpminspect-data-fedora',
-        version : '1.11',
+        version : '1.12',
         license : 'CC-BY-SA-4.0',
         meson_version : '>=0.47.0')
 
@@ -48,5 +48,5 @@ install_data(
 install_data(
     sources : 'rpminspect-fedora',
     install_dir : get_option('bindir'),
-    install_mode : 'rwxrwxrwx'
+    install_mode : 'rwxr-xr-x'
 )

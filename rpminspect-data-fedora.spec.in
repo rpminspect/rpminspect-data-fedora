@@ -16,7 +16,7 @@ BuildRequires:  meson
 BuildRequires:  ninja-build
 BuildRequires:  gnupg2
 
-Requires:       rpminspect >= 1.7
+Requires:       rpminspect >= 1.11
 
 # Used by inspections enabled in the configuration file
 Requires:       fedora-license-data

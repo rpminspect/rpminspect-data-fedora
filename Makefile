@@ -12,7 +12,7 @@ RELEASED_TARBALL_ASC = $(RELEASED_TARBALL).asc
 
 # where we keep version numbers
 LATEST_VER = $(shell grep " version : " meson.build | cut -d "'" -f 2)
-LATEST_TAG = $(shell git tag -l | cut -c2- | sort -n | tail -n 1)
+LATEST_TAG = $(shell git tag -l | cut -c2- | sort -V | tail -n 1)
 
 all: setup
 	ninja -C $(MESON_BUILD_DIR) -v

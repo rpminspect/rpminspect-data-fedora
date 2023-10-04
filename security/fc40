@@ -73,3 +73,7 @@ Prima-*/Prima/Drawable/Glyphs.pm            perl-Prima  *       *       unicode=
 
 # systemd test suite files
 systemd-*/test/fuzz/fuzz-unit-file/*        systemd     *       *       unicode=SKIP
+
+# clang
+# Ignore bidirectional unicode sequence documentation file
+clang-tools-extra-*.src/docs/clang-tidy/checks/misc/misleading-bidirectional.rst  clang  *  *  unicode=SKIP

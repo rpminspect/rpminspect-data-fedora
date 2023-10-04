@@ -70,3 +70,7 @@ glibc-*/libio/tst-widetext.input            glibc       *       *       unicode=
 
 # perl-Prima documentation contains RTL control characters on purpose
 Prima-*/Prima/Drawable/Glyphs.pm            perl-Prima  *       *       unicode=INFORM
+
+# clang
+# Ignore bidirectional unicode sequence documentation file
+clang-tools-extra-*.src/docs/clang-tidy/checks/misc/misleading-bidirectional.rst  clang  *  *  unicode=SKIP

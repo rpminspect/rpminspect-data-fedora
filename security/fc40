@@ -71,6 +71,9 @@ glibc-*/libio/tst-widetext.input            glibc       *       *       unicode=
 # perl-Prima documentation contains RTL control characters on purpose
 Prima-*/Prima/Drawable/Glyphs.pm            perl-Prima  *       *       unicode=INFORM
 
+# mumble has translation files that intentionally contain RTL control characters
+src/mumble/mumble_*.ts                      mumble      *       *       unicode=INFORM
+
 # systemd test suite files
 systemd-*/test/fuzz/fuzz-unit-file/*        systemd     *       *       unicode=SKIP
 

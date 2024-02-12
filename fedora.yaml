@@ -378,8 +378,8 @@ addedfiles:
     # for this inspection.  The format of this list is the same as the
     # global 'ignore' list.  The difference is the items specified
     # here will only be used during this inspection.
-    #ignore:
-    #    - /usr/lib*/libexample.so*
+    ignore:
+        - /var/tmp/tmt
 
 ownership:
     # Path prefixes where executable files live

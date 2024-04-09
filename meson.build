@@ -21,20 +21,23 @@ install_subdir(
     install_dir : get_option('datadir') + '/rpminspect'
 )
 install_subdir(
-    'rebaseable',
-    install_dir : get_option('datadir') + '/rpminspect'
-)
-install_subdir(
     'icons',
     install_dir : get_option('datadir') + '/rpminspect'
 )
 install_subdir(
-    'security',
+    'profiles',
     install_dir : get_option('datadir') + '/rpminspect'
 )
-
 install_subdir(
-    'profiles',
+    'rebaseable',
+    install_dir : get_option('datadir') + '/rpminspect'
+)
+install_subdir(
+    'remedy',
+    install_dir : get_option('datadir') + '/rpminspect'
+)
+install_subdir(
+    'security',
     install_dir : get_option('datadir') + '/rpminspect'
 )
 

@@ -59,8 +59,8 @@ clean:
 	-rm -rf $(MESON_BUILD_DIR)
 
 help:
-	@echo "rpminspect-data-fedora helper Makefile"
-	@echo "The source tree uses meson(1) for building and testing, but this Makefile"
+	@echo "rpminspect-data-fedora helper GNUmakefile"
+	@echo "The source tree uses meson(1) for building and testing, but this GNUmakefile"
 	@echo "is intended as a simple helper for the common steps."
 	@echo
 	@echo "    all          Default target, setup tree to build and build"

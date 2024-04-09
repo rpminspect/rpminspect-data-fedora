@@ -18,6 +18,12 @@ common:
     # exist in the profile directory.
     profiledir: /usr/share/rpminspect/profiles/fedora
 
+    # Location of the optional remedy string override file.  Use this to
+    # customize the remedy strings in rpminspect output.  This may be
+    # useful to vendors needing to specify internal procedures to fix a
+    # particular finding by rpminspect.
+    remedyfile: /usr/share/rpminspect/remedy/fedora.toml
+
 koji:
     # The root URL of the XMLRPC API provided by the Koji hub
     hub: https://koji.fedoraproject.org/kojihub
@@ -152,6 +158,7 @@ inspections:
     #upstream: off
     #virus: off
     #xml: off
+    #udevrules: off
 
 products:
     # Product release string matches.  rpminspect uses product release
@@ -189,9 +196,25 @@ products:
     - fc38: ^.*\.fc38.*$
     - fc39: ^.*\.fc39.*$
     - fc40: ^.*\.fc40.*$
+    - fc41: ^.*\.fc41.*$
+    - fc42: ^.*\.fc42.*$
+    - fc43: ^.*\.fc43.*$
+    - fc44: ^.*\.fc44.*$
+    - fc45: ^.*\.fc45.*$
+    - fc46: ^.*\.fc46.*$
+    - fc47: ^.*\.fc47.*$
+    - fc48: ^.*\.fc48.*$
+    - fc49: ^.*\.fc49.*$
+    - fc50: ^.*\.fc50.*$
     - el7: ^.*\.el7.*$
     - el8: ^.*\.el8.*$
     - el9: ^.*\.el9.*$
+    - el10: ^.*\.el10.*$
+    - el11: ^.*\.el11.*$
+    - el12: ^.*\.el12.*$
+    - el13: ^.*\.el13.*$
+    - el14: ^.*\.el14.*$
+    - el15: ^.*\.el15.*$
 
 macrofiles:
     # Paths to all RPM macro definitions that rpminspect should use.
@@ -867,3 +890,9 @@ debuginfo:
     # default is shown here.  This is a space-delimited string of ELF
     # section names.
     debuginfo_sections: .symtab .debug_info
+
+udevrules:
+    # Directories where udev rules live.
+    #udev_rules_dirs:
+    #    - /etc/udev/rules.d/
+    #    - /usr/lib/udev/rules.d/

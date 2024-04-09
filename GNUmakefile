@@ -7,7 +7,7 @@ PROJECT_VERSION = $(shell grep version $(topdir)/meson.build | grep -E ',$$' | c
 
 # full path to release tarball and detached signature
 # (this comes from a 'make release')
-RELEASED_TARBALL = $(topdir)/$(MESON_BUILD_DIR)/meson-dist/$(PROJECT_NAME)-$(PROJECT_VERSION).tar.xz
+RELEASED_TARBALL = $(topdir)/$(MESON_BUILD_DIR)/meson-dist/$(PROJECT_NAME)-$(PROJECT_VERSION).tar.gz
 RELEASED_TARBALL_ASC = $(RELEASED_TARBALL).asc
 
 # where we keep version numbers

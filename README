@@ -58,8 +58,8 @@ Use the upstream release repo for these steps:
     ~/newchanges in the description box.  Attach these files to the
     release from this directory:
 
-        rpminspect-data-fedora-X.Y.tar.xz
-        rpminspect-data-fedora-X.Y.tar.xz.asc
+        rpminspect-data-fedora-X.Y.tar.gz
+        rpminspect-data-fedora-X.Y.tar.gz.asc
 
 [ ] make koji
 

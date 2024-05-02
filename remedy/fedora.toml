@@ -59,7 +59,7 @@ Ensure all object files are compiled with -fPIC.
 elf_execstack_missing = """
 Ensure that the package is being built with the correct compiler and
 compiler flags.
-"
+"""
 
 elf_execstack_invalid = """
 The data in an ELF file appears to be corrupt; ensure that packaged
@@ -361,7 +361,7 @@ See the packaging guidelines for 'Scriptlet to replace a directory'
 for more information.
 """
 
-files = """
+file_paths = """
 Remove forbidden path references from the indicated line in the %files
 section.  In many cases you can use RPM macros to specify path
 locations.  See the RPM documentation or distribution package

@@ -86,10 +86,13 @@ drwxrwsr-x          uuidd      uuidd      /run/uuidd
 drwxrwsr-x          uuidd      uuidd      /var/lib/libuuid
 -rwsr-sr-x          tlog       tlog       /usr/bin/tlog-rec-session
 -rwsr-xr-x          root       root       /usr/sbin/grub2-set-bootflag
--rwsr-x---          root       sssd       /usr/libexec/sssd/selinux_child
--rwsr-x---          root       sssd       /usr/libexec/sssd/krb5_child
--rwsr-x---          root       sssd       /usr/libexec/sssd/ldap_child
--rwsr-x---          root       sssd       /usr/libexec/sssd/proxy_child
+-rwxr-x---          root       sssd       /usr/libexec/sssd/sssd_pam
+-rwxr-x---          root       sssd       /usr/libexec/sssd/selinux_child
+-rwxr-x---          root       sssd       /usr/libexec/sssd/krb5_child
+-rwxr-x---          root       sssd       /usr/libexec/sssd/ldap_child
+# proxy_child doesn't have public x bit as a safety measure since administrator
+# could be tempted to set SUID bit to support some legacy/3rd party PAM module
+-rwxr-x---          root       sssd       /usr/libexec/sssd/proxy_child
 -rwsr-xr-x          root       root       /usr/bin/vmware-user-suid-wrapper
 -rwsr-x---          root       mysql      /usr/lib/mariadb/plugin/auth_pam_tool_dir/auth_pam_tool
 -rwsr-x---          root       mysql      /usr/lib64/mariadb/plugin/auth_pam_tool_dir/auth_pam_tool

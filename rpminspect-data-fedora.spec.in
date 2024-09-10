@@ -4,7 +4,7 @@ Release:        1%{?dist}
 Epoch:          1
 Summary:        Build deviation compliance tool data files
 Group:          Development/Tools
-License:        CC-BY-SA
+License:        CC-BY-SA-4.0
 URL:            https://github.com/rpminspect/rpminspect-data-fedora
 Source0:        https://github.com/rpminspect/rpminspect/releases/download/v%{version}/%{name}-%{version}.tar.gz
 Source1:        https://github.com/rpminspect/rpminspect/releases/download/v%{version}/%{name}-%{version}.tar.gz.asc
@@ -16,7 +16,7 @@ BuildRequires:  meson
 BuildRequires:  ninja-build
 BuildRequires:  gnupg2
 
-Requires:       rpminspect >= 1.11
+Requires:       rpminspect >= 2.0
 
 # Used by inspections enabled in the configuration file
 Requires:       fedora-license-data >= 1.7

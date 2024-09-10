@@ -5,6 +5,9 @@ topdir := $(shell realpath $(dir $(lastword $(MAKEFILE_LIST))))
 PROJECT_NAME = $(shell grep ^project $(topdir)/meson.build | cut -d "'" -f 2)
 PROJECT_VERSION = $(shell grep version $(topdir)/meson.build | grep -E ',$$' | cut -d "'" -f 2)
 
+# regexp of email addresses of primary authors on the project
+PRIMARY_AUTHORS = dcantrell@redhat.com
+
 # full path to release tarball and detached signature
 # (this comes from a 'make release')
 RELEASED_TARBALL = $(topdir)/$(MESON_BUILD_DIR)/meson-dist/$(PROJECT_NAME)-$(PROJECT_VERSION).tar.gz
@@ -57,6 +60,19 @@ did-i-bumpver:
 
 clean:
 	-rm -rf $(MESON_BUILD_DIR)
+
+authors:
+	echo "Primary Authors" > AUTHORS.md
+	echo "===============" >> AUTHORS.md
+	echo >> AUTHORS.md
+	git log --pretty="%an <%ae>" | sort -u | grep -E "$(PRIMARY_AUTHORS)" | sed -e 's|^|- |g' | sed G >> AUTHORS.md
+	echo >> AUTHORS.md
+	echo "Contributors" >> AUTHORS.md
+	echo "============" >> AUTHORS.md
+	echo >> AUTHORS.md
+	git log --pretty="%aN <%aE>" | sort -u | grep -vE "$(PRIMARY_AUTHORS)" | sed -e 's|^|- |g' | sed G >> AUTHORS.md
+	head -n $$(($$(wc -l < AUTHORS.md) - 1)) AUTHORS.md > AUTHORS.md.new
+	mv AUTHORS.md.new AUTHORS.md
 
 help:
 	@echo "rpminspect-data-fedora helper GNUmakefile"

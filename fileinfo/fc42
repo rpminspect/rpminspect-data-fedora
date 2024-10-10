@@ -52,7 +52,7 @@ drwxrwsr-x          root       mailman    /var/lib/mailman/spam
 -rwx--s--x          root       slocate    /usr/bin/locate
 -rwsr-xr-x          root       root       /usr/sbin/usernetctl
 -rwsr-xr-x          root       root       /sbin/mount.nfs
--r-xr-sr-x          root       ssh_keys   /usr/libexec/openssh/ssh-keysign
+-r-sr-xr-x          root       root       /usr/libexec/openssh/ssh-keysign
 -rwsr-xr-x          root       root       /usr/sbin/pam_timestamp_check
 -rwsr-xr-x          root       root       /usr/sbin/unix_chkpwd
 -rwsr-xr-x          root       root       /usr/bin/passwd

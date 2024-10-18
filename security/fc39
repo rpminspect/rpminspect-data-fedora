@@ -80,3 +80,11 @@ systemd-*/test/fuzz/fuzz-unit-file/*        systemd     *       *       unicode=
 # clang
 # Ignore bidirectional unicode sequence documentation file
 clang-tools-extra-*.src/docs/clang-tidy/checks/misc/misleading-bidirectional.rst  clang  *  *  unicode=SKIP
+
+# annobin
+# Skip unicode test for annobin's unicode tests
+annobin-*/tests/trick-hello.s               annobin     *       *       unicode=SKIP
+
+# gcc
+# Skip unicode test for gcc's unicode tests
+gcc-*/gcc/testsuite/c-c++-common/*Wbidi*.c  gcc         *       *       unicode=SKIP

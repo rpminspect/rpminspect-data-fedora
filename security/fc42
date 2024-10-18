@@ -82,3 +82,11 @@ llvm-project-*.src/clang-tools-extra/docs/clang-tidy/checks/misc/misleading-bidi
 # Samba
 # Testdata for unicode conversion tests
 samba-*/testdata/source-chars-bad.c  samba             *           *           unicode=SKIP
+
+# annobin
+# Skip unicode test for annobin's unicode tests
+annobin-*/tests/trick-hello.s               annobin     *       *       unicode=SKIP
+
+# gcc
+# Skip unicode test for gcc's unicode tests
+gcc-*/gcc/testsuite/c-c++-common/*Wbidi*.c  gcc         *       *       unicode=SKIP

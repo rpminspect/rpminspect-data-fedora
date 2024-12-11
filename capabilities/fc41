@@ -38,6 +38,6 @@ wireshark-cli             /usr/bin/dumpcap                cap_net_admin,cap_net_
 shadow-utils              /usr/bin/newuidmap              cap_setuid=ep
 shadow-utils              /usr/bin/newgidmap              cap_setgid=ep
 sssd-common               /usr/libexec/sssd/sssd_pam      cap_dac_read_search=p
-sssd-ipa                  /usr/libexec/sssd/selinux_child cap_chown,cap_dac_override,cap_setgid,cap_setuid=ep
-sssd-krb5-common          /usr/libexec/sssd/krb5_child    cap_chown,cap_dac_override,cap_setgid,cap_setuid=ep
-sssd-krb5-common          /usr/libexec/sssd/ldap_child    cap_chown,cap_dac_override,cap_setgid,cap_setuid=ep
+sssd-ipa                  /usr/libexec/sssd/selinux_child cap_setgid,cap_setuid=p
+sssd-krb5-common          /usr/libexec/sssd/krb5_child    cap_dac_read_search,cap_setgid,cap_setuid=p
+sssd-krb5-common          /usr/libexec/sssd/ldap_child    cap_dac_read_search=p

@@ -87,6 +87,10 @@ samba-*/testdata/source-chars-bad.c  samba             *           *           u
 # Skip unicode test for annobin's unicode tests
 annobin-*/tests/trick-hello.s               annobin     *       *       unicode=SKIP
 
+# binutils
+# Skip unicode test for binutils's unicode tests
+binutils-*/gas/testsuite/gas/all/multibyte.s binutils   *       *       unicode=SKIP
+
 # gcc
 # Skip unicode test for gcc's unicode tests
 gcc-*/gcc/testsuite/c-c++-common/*Wbidi*.c  gcc         *       *       unicode=SKIP
